@@ -3,7 +3,6 @@
 #include <swapi.h>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){ return 0; }
-int windowcount = 0;
 
 void swapi_init(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){
     hInstancecp = hInstance;
@@ -12,11 +11,45 @@ void swapi_init(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, i
     nCmdShowcp = nCmdShow;
 }
 
-struct functions {
-    void (*funccp)();
+struct wineventfuncs {
+    void (*funccp1)();
+    void (*funccp2)();
+    void (*funccp3)();
+    void (*funccp4)();
+    void (*funccp5)();
+    void (*funccp6)();
+    void (*funccp7)();
+    void (*funccp8)();
+    void (*funccp9)();
+    void (*funccp10)();
+    void (*funccp11)();
+    void (*funccp12)();
+    void (*funccp13)();
+    void (*funccp14)();
+    void (*funccp15)();
+    void (*funccp16)();
+    void (*funccp17)();
+    void (*funccp18)();
+    void (*funccp19)();
+    void (*funccp20)();
+    void (*funccp21)();
+    void (*funccp22)();
+    void (*funccp23)();
+    void (*funccp24)();
+    void (*funccp25)();
+    void (*funccp26)();
+    void (*funccp27)();
+    void (*funccp28)();
+    void (*funccp29)();
+    void (*funccp30)();
+    void (*funccp31)();
+    void (*funccp32)();
+    void (*funccp33)();
+    void (*funccp34)();
 };
 
 char *windoweventcp;
+char *eventfuncswindname;
 
 struct winproperties {
     LPCWSTR windowname; 
@@ -24,83 +57,50 @@ struct winproperties {
     int positiony; 
     int width;
     int height;
-    struct functions funccp1;
-    struct functions funccp2;
-    struct functions funccp3;
-    struct functions funccp4;
-    struct functions funccp5;
-    struct functions funccp6;
-    struct functions funccp7;
-    struct functions funccp8;
-    struct functions funccp9;
-    struct functions funccp10;
-    struct functions funccp11;
-    struct functions funccp12;
-    struct functions funccp13;
-    struct functions funccp14;
-    struct functions funccp15;
-    struct functions funccp16;
-    struct functions funccp17;
-    struct functions funccp18;
-    struct functions funccp19;
-    struct functions funccp20;
-    struct functions funccp21;
-    struct functions funccp22;
-    struct functions funccp23;
-    struct functions funccp24;
-    struct functions funccp25;
-    struct functions funccp26;
-    struct functions funccp27;
-    struct functions funccp28;
-    struct functions funccp29;
-    struct functions funccp30;
-    struct functions funccp31;
-    struct functions funccp32;
-    struct functions funccp33;
-    struct functions funccp34;
 };
 
 struct winproperties window;
+struct wineventfuncs eventfuncs;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-    if(msg == WM_NULL && strstr(windoweventcp, "null")) window.funccp1.funccp();
-    if(msg == WM_CREATE && strstr(windoweventcp, "create")) window.funccp2.funccp();
-    if(msg == WM_DESTROY && strstr(windoweventcp, "destroy")) window.funccp3.funccp();
-    if(msg == WM_MOVE && strstr(windoweventcp, "move")) window.funccp4.funccp();
-    if(msg == WM_SIZE && strstr(windoweventcp, "size")) window.funccp5.funccp();
-    if(msg == WM_ACTIVATE && strstr(windoweventcp, "activate")) window.funccp6.funccp();
-    if(msg == WM_SETFOCUS && strstr(windoweventcp, "setfocus")) window.funccp7.funccp();
-    if(msg == WM_KILLFOCUS && strstr(windoweventcp, "killfocus")) window.funccp8.funccp();
-    if(msg == WM_ENABLE && strstr(windoweventcp, "enable")) window.funccp9.funccp();
-    if(msg == WM_SETREDRAW && strstr(windoweventcp, "setredraw")) window.funccp10.funccp();
-    if(msg == WM_SETTEXT && strstr(windoweventcp, "settext")) window.funccp11.funccp();
-    if(msg == WM_GETTEXT && strstr(windoweventcp, "gettext")) window.funccp12.funccp();
-    if(msg == WM_GETTEXTLENGTH && strstr(windoweventcp, "gettextlength")) window.funccp13.funccp();
-    if(msg == WM_PAINT && strstr(windoweventcp, "paint")) window.funccp14.funccp();
-    if(msg == WM_CLOSE && strstr(windoweventcp, "close")) window.funccp15.funccp();
-    if(msg == WM_QUERYENDSESSION && strstr(windoweventcp, "queryendsession")) window.funccp16.funccp();
-    if(msg == WM_QUERYOPEN && strstr(windoweventcp, "queryopen")) window.funccp17.funccp();
-    if(msg == WM_ENDSESSION && strstr(windoweventcp, "endsession")) window.funccp18.funccp();
-    if(msg == WM_QUIT && strstr(windoweventcp, "quit")) window.funccp19.funccp();
-    if(msg == WM_ERASEBKGND && strstr(windoweventcp, "erasebkgnd")) window.funccp20.funccp();
-    if(msg == WM_SYSCOLORCHANGE && strstr(windoweventcp, "syscolorchange")) window.funccp21.funccp();
-    if(msg == WM_SHOWWINDOW && strstr(windoweventcp, "showwindow")) window.funccp22.funccp();
-    if(msg == WM_WININICHANGE && strstr(windoweventcp, "wininitchange")) window.funccp23.funccp();
-    if(msg == WM_SETTINGCHANGE && strstr(windoweventcp, "settingchange")) window.funccp24.funccp();
-    if(msg == WM_DEVMODECHANGE && strstr(windoweventcp, "devmodechange")) window.funccp25.funccp();
-    if(msg == WM_ACTIVATEAPP && strstr(windoweventcp, "activateapp")) window.funccp26.funccp();
-    if(msg == WM_FONTCHANGE && strstr(windoweventcp, "fontchange")) window.funccp27.funccp();
-    if(msg == WM_TIMECHANGE && strstr(windoweventcp, "timechange")) window.funccp28.funccp();
-    if(msg == WM_CANCELMODE && strstr(windoweventcp, "cancelmode")) window.funccp29.funccp();
-    if(msg == WM_SETCURSOR && strstr(windoweventcp, "setcursor")) window.funccp30.funccp();
-    if(msg == WM_MOUSEACTIVATE && strstr(windoweventcp, "mouseactivate")) window.funccp31.funccp();
-    if(msg == WM_CHILDACTIVATE && strstr(windoweventcp, "childactivate")) window.funccp32.funccp();
-    if(msg == WM_QUEUESYNC && strstr(windoweventcp, "queuesync")) window.funccp33.funccp();
-    if(msg == WM_GETMINMAXINFO && strstr(windoweventcp, "getminmaxinfo")) window.funccp34.funccp();
+    if(msg == WM_NULL && strstr(windoweventcp, "null")) eventfuncs.funccp1();
+    if(msg == WM_CREATE && strstr(windoweventcp, "create")) eventfuncs.funccp2();
+    if(msg == WM_DESTROY && strstr(windoweventcp, "destroy")) eventfuncs.funccp3();
+    if(msg == WM_MOVE && strstr(windoweventcp, "move")) eventfuncs.funccp4();
+    if(msg == WM_SIZE && strstr(windoweventcp, "size")) eventfuncs.funccp5();
+    if(msg == WM_ACTIVATE && strstr(windoweventcp, "activate")) eventfuncs.funccp6();
+    if(msg == WM_SETFOCUS && strstr(windoweventcp, "setfocus")) eventfuncs.funccp7();
+    if(msg == WM_KILLFOCUS && strstr(windoweventcp, "killfocus")) eventfuncs.funccp8();
+    if(msg == WM_ENABLE && strstr(windoweventcp, "enable")) eventfuncs.funccp9();
+    if(msg == WM_SETREDRAW && strstr(windoweventcp, "setredraw")) eventfuncs.funccp10();
+    if(msg == WM_SETTEXT && strstr(windoweventcp, "settext")) eventfuncs.funccp11();
+    if(msg == WM_GETTEXT && strstr(windoweventcp, "gettext")) eventfuncs.funccp12();
+    if(msg == WM_GETTEXTLENGTH && strstr(windoweventcp, "gettextlength")) eventfuncs.funccp13();
+    if(msg == WM_PAINT && strstr(windoweventcp, "paint")) eventfuncs.funccp14();
+    if(msg == WM_CLOSE && strstr(windoweventcp, "close")) eventfuncs.funccp15();
+    if(msg == WM_QUERYENDSESSION && strstr(windoweventcp, "queryendsession")) eventfuncs.funccp16();
+    if(msg == WM_QUERYOPEN && strstr(windoweventcp, "queryopen")) eventfuncs.funccp17();
+    if(msg == WM_ENDSESSION && strstr(windoweventcp, "endsession")) eventfuncs.funccp18();
+    if(msg == WM_QUIT && strstr(windoweventcp, "quit")) eventfuncs.funccp19();
+    if(msg == WM_ERASEBKGND && strstr(windoweventcp, "erasebkgnd")) eventfuncs.funccp20();
+    if(msg == WM_SYSCOLORCHANGE && strstr(windoweventcp, "syscolorchange")) eventfuncs.funccp21();
+    if(msg == WM_SHOWWINDOW && strstr(windoweventcp, "showwindow")) eventfuncs.funccp22();
+    if(msg == WM_WININICHANGE && strstr(windoweventcp, "wininitchange")) eventfuncs.funccp23();
+    if(msg == WM_SETTINGCHANGE && strstr(windoweventcp, "settingchange")) eventfuncs.funccp24();
+    if(msg == WM_DEVMODECHANGE && strstr(windoweventcp, "devmodechange")) eventfuncs.funccp25();
+    if(msg == WM_ACTIVATEAPP && strstr(windoweventcp, "activateapp")) eventfuncs.funccp26();
+    if(msg == WM_FONTCHANGE && strstr(windoweventcp, "fontchange")) eventfuncs.funccp27();
+    if(msg == WM_TIMECHANGE && strstr(windoweventcp, "timechange")) eventfuncs.funccp28();
+    if(msg == WM_CANCELMODE && strstr(windoweventcp, "cancelmode")) eventfuncs.funccp29();
+    if(msg == WM_SETCURSOR && strstr(windoweventcp, "setcursor")) eventfuncs.funccp30();
+    if(msg == WM_MOUSEACTIVATE && strstr(windoweventcp, "mouseactivate")) eventfuncs.funccp31();
+    if(msg == WM_CHILDACTIVATE && strstr(windoweventcp, "childactivate")) eventfuncs.funccp32();
+    if(msg == WM_QUEUESYNC && strstr(windoweventcp, "queuesync")) eventfuncs.funccp33();
+    if(msg == WM_GETMINMAXINFO && strstr(windoweventcp, "getminmaxinfo")) eventfuncs.funccp34();
     return DefWindowProcW(hwnd, msg, wParam, lParam);
 }
 
-void swapi_addwindowevent(char *windowevent, void (*func)()){
+void swapi_addwindowevent(char *windowevent, void (*func)(), char *windname){
     if(windoweventcp == NULL || strcmp(windoweventcp, "") == 0){
         windoweventcp = (char *) malloc(sizeof(char)*(strlen(windowevent)+1));
         strcpy(windoweventcp, windowevent);
@@ -109,40 +109,41 @@ void swapi_addwindowevent(char *windowevent, void (*func)()){
         strcat(windoweventcp, " ");
         strcat(windoweventcp, windowevent);
     }
-    if(strstr(windoweventcp, "null")) window.funccp1.funccp = func;
-    else if(strstr(windoweventcp, "create")) window.funccp2.funccp = func;
-    else if(strstr(windoweventcp, "destroy")) window.funccp3.funccp = func;
-    else if(strstr(windoweventcp, "move")) window.funccp4.funccp = func;
-    else if(strstr(windoweventcp, "size")) window.funccp5.funccp = func;
-    else if(strstr(windoweventcp, "activate")) window.funccp6.funccp = func;
-    else if(strstr(windoweventcp, "setfocus")) window.funccp7.funccp = func;
-    else if(strstr(windoweventcp, "killfocus")) window.funccp8.funccp = func;
-    else if(strstr(windoweventcp, "enable")) window.funccp9.funccp = func;
-    else if(strstr(windoweventcp, "setredraw")) window.funccp10.funccp = func;
-    else if(strstr(windoweventcp, "settext")) window.funccp11.funccp = func;
-    else if(strstr(windoweventcp, "gettext")) window.funccp12.funccp = func;
-    else if(strstr(windoweventcp, "gettextlength")) window.funccp13.funccp = func;
-    else if(strstr(windoweventcp, "paint")) window.funccp14.funccp = func;
-    else if(strstr(windoweventcp, "close")) window.funccp15.funccp = func;
-    else if(strstr(windoweventcp, "queryendsession")) window.funccp16.funccp = func;
-    else if(strstr(windoweventcp, "queryopen")) window.funccp17.funccp = func;
-    else if(strstr(windoweventcp, "endsession")) window.funccp18.funccp = func;
-    else if(strstr(windoweventcp, "quit")) window.funccp19.funccp = func;
-    else if(strstr(windoweventcp, "erasebkgnd")) window.funccp20.funccp = func;
-    else if(strstr(windoweventcp, "syscolorchange")) window.funccp21.funccp = func;
-    else if(strstr(windoweventcp, "showwindow")) window.funccp22.funccp = func;
-    else if(strstr(windoweventcp, "wininitchange")) window.funccp23.funccp = func;
-    else if(strstr(windoweventcp, "settingchange")) window.funccp24.funccp = func;
-    else if(strstr(windoweventcp, "devmodechange")) window.funccp25.funccp = func;
-    else if(strstr(windoweventcp, "activateapp")) window.funccp26.funccp = func;
-    else if(strstr(windoweventcp, "fontchange")) window.funccp27.funccp = func;
-    else if(strstr(windoweventcp, "timechange")) window.funccp28.funccp = func;
-    else if(strstr(windoweventcp, "cancelmode")) window.funccp29.funccp = func;
-    else if(strstr(windoweventcp, "setcursor")) window.funccp30.funccp = func;
-    else if(strstr(windoweventcp, "mouseactivate")) window.funccp31.funccp = func;
-    else if(strstr(windoweventcp, "childactivate")) window.funccp32.funccp = func;
-    else if(strstr(windoweventcp, "queuesync")) window.funccp33.funccp = func;
-    else if(strstr(windoweventcp, "getminmaxinfo")) window.funccp34.funccp = func;
+    strcpy(eventfuncswindname, windname);
+    if(strstr(windoweventcp, "null") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp1 = func;
+    else if(strstr(windoweventcp, "create") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp2 = func;
+    else if(strstr(windoweventcp, "destroy") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp3 = func;
+    else if(strstr(windoweventcp, "move") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp4 = func;
+    else if(strstr(windoweventcp, "size") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp5 = func;
+    else if(strstr(windoweventcp, "activate") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp6 = func;
+    else if(strstr(windoweventcp, "setfocus") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp7 = func;
+    else if(strstr(windoweventcp, "killfocus") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp8 = func;
+    else if(strstr(windoweventcp, "enable") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp9 = func;
+    else if(strstr(windoweventcp, "setredraw") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp10 = func;
+    else if(strstr(windoweventcp, "settext") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp11 = func;
+    else if(strstr(windoweventcp, "gettext") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp12 = func;
+    else if(strstr(windoweventcp, "gettextlength") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp13 = func;
+    else if(strstr(windoweventcp, "paint") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp14 = func;
+    else if(strstr(windoweventcp, "close") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp15 = func;
+    else if(strstr(windoweventcp, "queryendsession") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp16 = func;
+    else if(strstr(windoweventcp, "queryopen") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp17 = func;
+    else if(strstr(windoweventcp, "endsession") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp18 = func;
+    else if(strstr(windoweventcp, "quit") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp19 = func;
+    else if(strstr(windoweventcp, "erasebkgnd") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp20 = func;
+    else if(strstr(windoweventcp, "syscolorchange") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp21 = func;
+    else if(strstr(windoweventcp, "showwindow") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp22 = func;
+    else if(strstr(windoweventcp, "wininitchange") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp23 = func;
+    else if(strstr(windoweventcp, "settingchange") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp24 = func;
+    else if(strstr(windoweventcp, "devmodechange") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp25 = func;
+    else if(strstr(windoweventcp, "activateapp") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp26 = func;
+    else if(strstr(windoweventcp, "fontchange") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp27 = func;
+    else if(strstr(windoweventcp, "timechange") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp28 = func;
+    else if(strstr(windoweventcp, "cancelmode") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp29 = func;
+    else if(strstr(windoweventcp, "setcursor") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp30 = func;
+    else if(strstr(windoweventcp, "mouseactivate") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp31 = func;
+    else if(strstr(windoweventcp, "childactivate") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp32 = func;
+    else if(strstr(windoweventcp, "queuesync") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp33 = func;
+    else if(strstr(windoweventcp, "getminmaxinfo") && strcmp(eventfuncswindname, windname) == 0) eventfuncs.funccp34 = func;
 }
 
 MSG  msg;    
