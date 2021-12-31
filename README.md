@@ -156,6 +156,60 @@ Example:
 swapi_changeicon("error");
 ```
 
+#### Adding quit events to the window
+
+```
+void swapi_addwindowevent(char *windowevent, void (*func)(), char *windname);
+```
+
+| Parameter   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `windowevent`      | `char *` | Put here the name of the corresponding window event you want to add |
+| `func`      | `void (*)()` | Put here the address of the function that is going to run when the event added is fired |
+| `windname`      | `char *` | Put here the name of the name where the events are added |
+
+Names of the window events that exist:
+
+- null
+- create
+- move
+- size
+- activate
+- setfocus
+- killfocus
+- enable
+- setredraw
+- settext
+- gettext
+- gettextlength
+- paint
+- close
+- queryendsession
+- queryopen
+- endsession
+- quit
+- erasebkgnd
+- syscolorchange
+- showwindow
+- wininitchange
+- settingchange
+- devmodechange
+- activateapp
+- fontchange
+- timechange
+- cancelmode
+- setcursor
+- mouseactivate
+- childactivate
+- queuesync
+- getminmaxinfo
+
+Example:
+
+```
+swapi_addwindowevent("null", &event, "mainwindow");
+```
+
 #### After all the configuration, show our final window to the user
 
 ```

@@ -63,9 +63,11 @@ struct winproperties window;
 struct wineventfuncs eventfuncs;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+    if(msg == WM_DESTROY){
+        PostQuitMessage(0);
+    }
     if(msg == WM_NULL && strstr(windoweventcp, "null")) eventfuncs.funccp1();
     if(msg == WM_CREATE && strstr(windoweventcp, "create")) eventfuncs.funccp2();
-    if(msg == WM_DESTROY && strstr(windoweventcp, "destroy")) eventfuncs.funccp3();
     if(msg == WM_MOVE && strstr(windoweventcp, "move")) eventfuncs.funccp4();
     if(msg == WM_SIZE && strstr(windoweventcp, "size")) eventfuncs.funccp5();
     if(msg == WM_ACTIVATE && strstr(windoweventcp, "activate")) eventfuncs.funccp6();
