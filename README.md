@@ -222,6 +222,10 @@ Example:
 swapi_showwindow();
 ```
 
+#### Note:
+
+Right now you can only display 1 window at a time. Maybe this will be fixed in future updates. 
+
 ## Compiling your project
 
 After your project is ready to be tested/published, you have to compile it (on obj format). To do that, just compile your project the way you want, adding the (-c) option and (-I.), so it includes the swapi.h file. After that you run this command:
