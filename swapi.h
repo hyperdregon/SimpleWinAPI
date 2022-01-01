@@ -12,7 +12,7 @@ void swapi_createwindow(LPCWSTR classname, LPCWSTR windowname, int positionx, in
 void swapi_changestyle(DWORD newstyle);
 void swapi_changecursor(char *name);
 void swapi_changeicon(char *name);
-void swapi_addwindowevent(char *windowevent, void (*func)(), char *windname);
+void swapi_addwindowevent(char *windowevent, void (*func)());
 void swapi_showwindow();
 
 #endif

@@ -49,7 +49,6 @@ struct wineventfuncs {
 };
 
 char *windoweventcp;
-char *eventfuncswindname;
 
 struct winproperties {
     LPCWSTR windowname; 
@@ -102,7 +101,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     return DefWindowProcW(hwnd, msg, wParam, lParam);
 }
 
-void swapi_addwindowevent(char *windowevent, void (*func)(), char *windname){
+void swapi_addwindowevent(char *windowevent, void (*func)()){
     if(windoweventcp == NULL || strcmp(windoweventcp, "") == 0){
         windoweventcp = (char *) malloc(sizeof(char)*(strlen(windowevent)+1));
         strcpy(windoweventcp, windowevent);
@@ -111,7 +110,6 @@ void swapi_addwindowevent(char *windowevent, void (*func)(), char *windname){
         strcat(windoweventcp, " ");
         strcat(windoweventcp, windowevent);
     }
-    strcpy(eventfuncswindname, windname);
     if(strstr(windoweventcp, "null")) eventfuncs.funccp1 = func;
     else if(strstr(windoweventcp, "create")) eventfuncs.funccp2 = func;
     else if(strstr(windoweventcp, "destroy")) eventfuncs.funccp3 = func;
