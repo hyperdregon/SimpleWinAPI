@@ -13,6 +13,7 @@ void swapi_changestyle(DWORD newstyle);
 void swapi_changecursor(char *name);
 void swapi_changeicon(char *name);
 void swapi_addwindowevent(char *windowevent, void (*func)());
-void swapi_showwindow();
+void swapi_showwindow(void (*func)());
+void swapi_destroywindow();
 
 #endif

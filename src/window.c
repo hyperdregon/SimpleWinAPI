@@ -48,6 +48,8 @@ struct wineventfuncs {
     void (*funccp34)();
 };
 
+int closewindow = 0;
+
 char *windoweventcp;
 
 struct winproperties {
@@ -171,7 +173,8 @@ void swapi_createwindow(LPCWSTR classname, LPCWSTR windowname, int positionx, in
 DWORD style;
 int changedstyle = 0;
 
-void swapi_showwindow(){
+void swapi_showwindow(void (*func)()){
+    int runnedfunc = 0;
     if(changedstyle == 0){
         style = WS_OVERLAPPEDWINDOW | WS_VISIBLE;
     }
@@ -182,6 +185,10 @@ void swapi_showwindow(){
     while (GetMessage(&msg, NULL, 0, 0)) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
+        if(func != NULL && runnedfunc == 0){
+            func();
+            runnedfunc = 1;
+        }
     }
     changedstyle = 0;
 }
@@ -189,6 +196,10 @@ void swapi_showwindow(){
 void swapi_changestyle(DWORD newstyle){
     style = newstyle;
     changedstyle = 1;
+}
+
+void swapi_destroywindow(){
+    DestroyWindow(hwnd);
 }
 
 void swapi_changecursor(char *name){

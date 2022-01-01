@@ -210,16 +210,20 @@ Example:
 swapi_addwindowevent("null", &event, "mainwindow");
 ```
 
-#### After all the configuration, show our final window to the user
+#### Showing the window
 
 ```
-void swapi_showwindow();
+void swapi_showwindow(void (*func)());
 ```
+
+| Parameter   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `func`      | `void (*)()` | Put here the address of the function that is going to run after the window is shown. If you don't have anymore code further, set it to NULL |
 
 Example:
 
 ```
-swapi_showwindow();
+swapi_showwindow(&afterwindowshown);
 ```
 
 #### Note:
