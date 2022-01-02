@@ -1,0 +1,21 @@
+mkbuilddir: compdll
+	powershell -command rm -r build/
+	powershell -command rm *.o
+	powershell -command mkdir build/
+	powershell -command cp include/swapi.h build/
+	powershell -command mv swapi.dll build/
+
+compdll: linkobjs
+	gcc -s -shared swapi.o -o swapi.dll
+
+linkobjs: window.o button.o
+	ld -relocatable window.o button.o -o swapi.o
+
+all: 
+
+window.o:
+	gcc -I./include -c src\window.c
+
+button.o:
+	gcc -I./include -c src\WindowElements\button.c
+
