@@ -69,8 +69,28 @@ struct winproperties window;
 struct wineventfuncs eventfuncs;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
-    if(msg == WM_DESTROY){
-        PostQuitMessage(0);
+    switch (msg)
+    {
+        case WM_DESTROY:
+            PostQuitMessage(0);
+            break;
+        case WM_COMMAND:
+            switch (HIWORD(wParam))
+            {
+                case BN_CLICKED:
+                {
+                    for(int i = 0; i < 1000; i++){
+                        if(btnhwnd[i] != NULL){
+                            if ((HWND)lParam == btnhwnd[i])
+                            {
+                                void (*func)() = funcs[i];
+                                func();
+                            }
+                        }
+                    }
+                }
+            }
+            break;
     }
     if(windoweventcp != NULL && strcmp(windoweventcp, "") == 0){
         if(msg == WM_NULL && strstr(windoweventcp, "null")) eventfuncs.funccp1();

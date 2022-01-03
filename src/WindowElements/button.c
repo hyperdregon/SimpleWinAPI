@@ -5,7 +5,7 @@
 
 struct btnproperties {
     HWND winhwnd;
-    LPCSTR btntext;
+    LPCTSTR btntext;
     int x;
     int y; 
     int width; 
@@ -14,13 +14,23 @@ struct btnproperties {
 
 struct btnproperties btnprots;
 
-void swapi_addcmdbutton(HWND winhwnd, LPCSTR btntext, int x, int y, int width, int height){
+void swapi_addbutton(HWND winhwnd, LPCTSTR btntext, int x, int y, int width, int height){
     btnprots.winhwnd = winhwnd;
     btnprots.btntext = btntext;
     btnprots.x = x;
     btnprots.y = y;
     btnprots.width = width;
     btnprots.height = height;
+}
+
+int btncount = 0;
+HWND btnhwnd[1000000];
+void *funcs[1000000];
+
+void swapi_addbtnevent(HWND hwnd, void(*func)()){
+    btnhwnd[btncount] = hwnd;
+    funcs[btncount] = func;
+    btncount++;
 }
 
 HWND swapi_showbutton(){

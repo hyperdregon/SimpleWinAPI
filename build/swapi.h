@@ -13,8 +13,13 @@ void swapi_showwindow(void (*func)());
 void swapi_destroywindow();
 
 //BUTTON
-void swapi_addcmdbutton(HWND winhwnd, LPCSTR btntext, int x, int y, int width, int height);
+
+extern HWND btnhwnd[];
+extern void *funcs[];
+
+void swapi_addbutton(HWND winhwnd, LPCTSTR btntext, int x, int y, int width, int height);
 HWND swapi_showbutton();
 void swapi_destroybutton(HWND hwnd);
+void swapi_addbtnevent(HWND hwnd, void(*func)());
 
 #endif
