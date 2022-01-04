@@ -75,24 +75,30 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             PostQuitMessage(0);
             break;
         case WM_COMMAND:
-            switch (HIWORD(wParam))
-            {
-                case BN_CLICKED:
-                {
-                    for(int i = 0; i < 1000; i++){
-                        if(bselemhwnd[i] != NULL){
-                            if ((HWND)lParam == bselemhwnd[i])
-                            {
-                                void (*func)() = bselemfuncs[i];
-                                func();
-                            }
+            if(HIWORD(wParam) == BN_CLICKED) {
+                for(int i = 0; i < 1000000; i++){
+                    if(bselemhwnd[i] != NULL){
+                        if ((HWND)lParam == bselemhwnd[i])
+                        {
+                            void (*func)() = bselemfuncs[i];
+                            func();
                         }
                     }
+                    else break;
                 }
+            }
+            for(int i = 0; i < 1000; i++){
+                if(submnoptsfuncs[i] != NULL){
+                    if(wParam == i+1){
+                        void (*func)() = submnoptsfuncs[i];
+                        func();
+                    }
+                }
+                else break;
             }
             break;
     }
-    if(windoweventcp != NULL && strcmp(windoweventcp, "") == 0){
+    if(windoweventcp != NULL && strcmp(windoweventcp, "") != 0){
         if(msg == WM_NULL && strstr(windoweventcp, "null")) eventfuncs.funccp1();
         if(msg == WM_CREATE && strstr(windoweventcp, "create")) eventfuncs.funccp2();
         if(msg == WM_MOVE && strstr(windoweventcp, "move")) eventfuncs.funccp4();
@@ -132,7 +138,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
 
 void swapi_addwindowevent(char *windowevent, void (*func)()){
     if(windoweventcp == NULL || strcmp(windoweventcp, "") == 0){
-        windoweventcp = (char *) malloc(sizeof(char)*(strlen(windowevent)+1));
+        windoweventcp = (char *) malloc(sizeof(char)*1000000);
         strcpy(windoweventcp, windowevent);
     }
     else {
@@ -209,17 +215,12 @@ HWND swapi_createwindow(LPCWSTR classname, LPCWSTR windowname, int positionx, in
 
 int runnedfunc = 0;
 
-void swapi_showwindow(void (*func)()){
-    runnedfunc = 0;
+void swapi_showwindow(){
     ShowWindow(hwnd, nCmdShowcp);
     UpdateWindow(hwnd);
     while (GetMessage(&msg, NULL, 0, 0)) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
-        if(func != NULL && runnedfunc == 0){
-            func();
-            runnedfunc = 1;
-        }
     }
     changedstyle = 0;
 }

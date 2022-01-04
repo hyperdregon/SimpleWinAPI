@@ -11,7 +11,7 @@ I couldn't think about anything to do, because all I wanted was a GUI interface 
 So, here it is! The SimpleWinAPI, which is very lightweight, and simple to use!
 
 
-## Using/Installing the extension
+## Using/Installing the library
 
 First, you need to clone the project, and extract it, after that, just copy the swapi.h and the swapi.dll files onto your project. After that, to start using it just include it, like this:
 
@@ -22,6 +22,8 @@ First, you need to clone the project, and extract it, after that, just copy the 
 And that's it! Than you can start using in your project this library!
     
 ## API Docs
+
+### Window
 
 #### Initializing the API
 
@@ -214,17 +216,219 @@ swapi_addwindowevent("null", &event);
 #### Showing the window
 
 ```
-void swapi_showwindow(void (*func)());
+void swapi_showwindow();
 ```
 
-| Parameter   | Type       | Description                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `func`      | `void (*)()` | Put here the address of the function that is going to run after the window is shown. If you don't have anymore code further, set it to NULL |
+(This method will interrupt all the code after the function, so if you want to do code after the window is created, you can set a create event, and run a function when it is triggered)
 
 Example:
 
 ```
-swapi_showwindow(&afterwindowshown);
+swapi_showwindow();
+```
+
+#### Destroying the window
+
+```
+void swapi_destroywindow();
+```
+
+Example:
+
+```
+swapi_destroywindow();
+```
+
+### Basic Elements
+
+#### Adding an element
+
+```
+void swapi_addbselement(HWND winhwnd, LPCTSTR elemtext, int x, int y, int width, int height);
+```
+
+| Parameter   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `winhwnd`      | `HWND` | Put here the window handler of the window displayed. |
+| `elemtext`      | `LPCTSTR` | Put here the text that the element is going to display. |
+| `x`      | `int` | The position of the window, in the x axis |
+| `y`      | `int` | The position of the window, in the y axis |
+| `width`      | `int` | The width of the window |
+| `height`      | `int` | The height of the window |
+
+Example:
+
+```
+swapi_addbselement(hwnd, "", 10, 10, 100, 20);
+```
+
+#### Adding an element event
+
+(This function, when used, has to be runned after showing the element)
+
+```
+void swapi_addbselemevent(HWND hwnd, void(*func)());
+```
+
+| Parameter   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `hwnd`      | `HWND` | Put here the hwnd value of the element returned in showing element |
+| `func`      | `void(*)()` | Put here the function that is going to run when the event is triggered. |
+
+Example:
+
+```
+swapi_addbselement(hwnd, "", 10, 10, 100, 20);
+```
+
+#### Showing an element
+
+```
+HWND swapi_showbselement(char *type);
+```
+
+| Parameter   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `type`      | `char *` | Put here the type of the element. |
+
+Types of elements:
+
+- button
+- textfield
+
+Returns:
+
+The hwnd value of the element, which can be using for deleting it, for example.
+
+Example:
+
+```
+HWND btnhwnd = swapi_showbselement("button");
+```
+
+#### Destroying an element
+
+```
+void swapi_destroybselement(HWND hwnd);
+```
+
+| Parameter   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `hwnd`      | `HWND` | Put here the hwnd value of the element. |
+
+Example:
+
+```
+swapi_addbselement(hwnd, "", 10, 10, 100, 20);
+```
+
+### Menus
+
+Before anything, what is menus?
+
+Look at the top of, for example, the VSCode window. If you are using this library, you must be a programmer, and you at least have to use it for something. So, you see the thing that says File, Edit, Selection, ..., right? That's the menu! And you can create it now using this library.
+
+#### Initializing the menu
+
+```
+void swapi_initmenu();
+```
+
+Example:
+
+```
+swapi_initmenu();
+```
+
+#### Initializing a submenu
+
+```
+void swapi_initsubmenu();
+```
+
+Example:
+
+```
+swapi_initsubmenu();
+```
+
+#### Adding a submenu option
+
+```
+int swapi_addsubmnoption(char *option);
+```
+
+| Parameter   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `option`      | `char *` | Put here the text of the option. |
+
+Example:
+
+```
+int optionnum = swapi_addsubmncatgryoption("New");
+```
+
+#### Adding a submenu option event
+
+```
+void swapi_addsubmnoptevent(int mnoptnum, void(*func)());
+```
+
+| Parameter   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `mnoptnum`      | `int` | Put here the number that corresponds to the option. |
+| `func`      | `void(*)()` | Put here the function that is going to execute when the event is triggered. |
+
+Example:
+
+```
+int optionnum = swapi_addsubmncatgryoption("New");
+```
+
+#### Adding the submenu
+
+(We first initialized the submenu, now we need to add the submenu, by setting a name to it)
+
+```
+void swapi_addsubmenu(char *name);
+```
+
+| Parameter   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `mnoptnum`      | `int` | Put here the name of the submenu. |
+
+Example:
+
+```
+swapi_addsubmenu("File");
+```
+
+#### Showing the menu
+
+```
+void swapi_showmenu(HWND winhwnd);
+```
+
+| Parameter   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `winhwnd`      | `HWND` | Put here the window handler of the window displayed. |
+
+Example:
+
+```
+swapi_showmenu(hwnd); 
+```
+
+#### Adding a submenu separator
+
+```
+void swapi_addsubmnseparator();
+```
+
+Example:
+
+```
+swapi_addsubmnseparator();
 ```
 
 #### Note:
@@ -268,10 +472,10 @@ If you do contribute, your name is going to appear in the contributors page!
 
 Yes, it will.
 
-#### Are you planning to port this extension to another language? (Ex. Python, Java)
+#### Are you planning to port this library to another language? (Ex. Python, Java)
 
 At the moment, no.
 
-#### Does this extension support other OSes except Windows?
+#### Does this library support other OSes except Windows?
 
-It isn't the extension that isn't supported. DLLs are only supported on Windows, but the project can be easily compiled to Linux or MacOS. The problem is that the Windows API only supports Windows, so you would need to use Wine or a Windows VM.
+It isn't the library that isn't supported. DLLs are only supported on Windows, but the project can be easily compiled to Linux or MacOS. The problem is that the Windows API only supports Windows, so you would need to use Wine or a Windows VM.

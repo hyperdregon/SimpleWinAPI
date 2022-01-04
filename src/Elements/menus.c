@@ -15,7 +15,7 @@ void swapi_initsubmenu(){
     hsubmenu = CreateMenu();
 }
 
-int swapi_addmncatgryoption(char *option){
+int swapi_addsubmnoption(char *option){
     AppendMenu(hsubmenu, MF_STRING, catgrycount, option);
     catgrycount++;
     return catgrycount-1;
@@ -23,16 +23,14 @@ int swapi_addmncatgryoption(char *option){
 
 int submnoptscount = 0;
 
-int submnoptsnums[1000];
 void *submnoptsfuncs[1000];
 
 void swapi_addsubmnoptevent(int mnoptnum, void(*func)()){
-    submnoptsnums[submnoptscount] = mnoptnum;
-    submnoptsfuncs[submnoptscount] = func;
+    submnoptsfuncs[mnoptnum-1] = func;
     submnoptscount++;
 }
 
-void swapi_addmnseparator(){
+void swapi_addsubmnseparator(){
     AppendMenu(hsubmenu, MF_SEPARATOR, (UINT_PTR) NULL, NULL);
 }
 

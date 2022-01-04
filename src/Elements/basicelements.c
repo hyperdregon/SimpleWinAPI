@@ -12,9 +12,9 @@ struct bselemproperties {
 };
 struct bselemproperties bselemprots;
 
-void swapi_addbselement(HWND winhwnd, LPCTSTR btntext, int x, int y, int width, int height){
+void swapi_addbselement(HWND winhwnd, LPCTSTR elemtext, int x, int y, int width, int height){
     bselemprots.winhwnd = winhwnd;
-    bselemprots.bselemtext = btntext;
+    bselemprots.bselemtext = elemtext;
     bselemprots.x = x;
     bselemprots.y = y;
     bselemprots.width = width;
