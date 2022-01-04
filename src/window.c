@@ -80,10 +80,10 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 case BN_CLICKED:
                 {
                     for(int i = 0; i < 1000; i++){
-                        if(btnhwnd[i] != NULL){
-                            if ((HWND)lParam == btnhwnd[i])
+                        if(bselemhwnd[i] != NULL){
+                            if ((HWND)lParam == bselemhwnd[i])
                             {
-                                void (*func)() = funcs[i];
+                                void (*func)() = bselemfuncs[i];
                                 func();
                             }
                         }
