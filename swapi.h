@@ -16,9 +16,9 @@ void swapi_destroywindow();
 extern HWND bselemhwnd[];
 extern void *bselemfuncs[];
 
-void swapi_addbselement(HWND winhwnd, LPCTSTR elemtext, int x, int y, int width, int height, char *type, LPCWSTR path);
+void swapi_addbselement(HWND winhwnd, LPCTSTR elemtext, int x, int y, int width, int height);
 void swapi_addbselemevent(HWND hwnd, void(*func)());
-HWND swapi_showbselement();
+HWND swapi_showbselement(char *type, LPCWSTR path);
 void swapi_destroybselement(HWND hwnd);
 
 //MENUS
