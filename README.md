@@ -10,6 +10,8 @@ I couldn't think about anything to do, because all I wanted was a GUI interface 
 
 So, here it is! The SimpleWinAPI, which is very lightweight, and simple to use!
 
+(In the Wiki page you will have everything you need to know to start using this project!)
+
 
 ## Contribute
 
