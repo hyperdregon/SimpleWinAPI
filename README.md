@@ -431,6 +431,49 @@ Example:
 swapi_addsubmnseparator();
 ```
 
+### Popups
+
+#### Creating a popup
+
+```
+void swapi_createmsgbox(HWND winhwnd, LPCTSTR msgboxtext, LPCTSTR msgboxname, UINT msgboxtype);
+```
+
+| Parameter   | Type       | Description                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `winhwnd`      | `HWND` | Put here the window handler of the window displayed. |
+| `msgboxtext`      | `LPCTSTR` | Put here the text of the popup. |
+| `msgboxname`      | `LPCTSTR` | Put here the name of the popup. |
+| `msgboxtype`      | `UINT` | Put here the type of popup you want (buttons, icon, etc) |
+
+Types of popup:
+
+Here is a link to microsoft, that has all the possible styles a popup can have.
+
+https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-messagebox
+
+Example:
+
+```
+swapi_createmsgbox(hwnd, "How are you?", "Hello!", MB_YESNO);
+```
+
+#### Showing a popup
+
+Once created, we can show our popup.
+
+```
+int swapi_showmsgbox();
+```
+
+This function returns the value returned from the message box, which is also explained well in the microsoft link (see "Creating a popup").
+
+Example:
+
+```
+int resultcode = swapi_showmsgbox();
+```
+
 #### Note:
 
 Right now you can only display 1 window at a time. Maybe this will be fixed in future updates. 
@@ -452,11 +495,6 @@ Example:
 gcc -I. -c .\main.c -o main.o
 gcc -o main.exe -s main.o -L. -lswapi
 ```
-
-## Contributors
-
-- [@hyperdregon](https://github.com/hyperdregon)
-- [@Vodrick](https://github.com/Vodrick)
 
 ## Contribute
 

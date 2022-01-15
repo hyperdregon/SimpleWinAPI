@@ -4,8 +4,8 @@ mkbuilddir: compdll
 compdll: linkobjs
 	gcc -s -shared swapi.o -o swapi.dll
 
-linkobjs: window.o basicelements.o menus.o
-	ld -relocatable window.o basicelements.o menus.o -o swapi.o
+linkobjs: window.o basicelements.o menus.o messagebox.o
+	ld -relocatable window.o basicelements.o menus.o -o swapi.o messagebox.o
 
 all: 
 
@@ -17,4 +17,7 @@ basicelements.o:
 
 menus.o:
 	gcc -I. -c src\Elements\menus.c
+
+messagebox.o:
+	gcc -I. -c src\OtherWindows\messagebox.c
 

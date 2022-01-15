@@ -32,4 +32,9 @@ void swapi_addsubmenu(char *name);
 void swapi_showmenu(HWND winhwnd);
 void swapi_addsubmnseparator();
 
+//MESSAGEBOX
+
+void swapi_createmsgbox(HWND winhwnd, LPCTSTR msgboxtext, LPCTSTR msgboxname, UINT msgboxtype);
+int swapi_showmsgbox();
+
 #endif
