@@ -13,8 +13,6 @@ So, here it is! The SimpleWinAPI, which is very lightweight, and simple to use!
 
 ## Using/Installing the library
 
-(DON'T CLONE THE DEV BRANCH!!! THAT BRANCH IS ONLY TO BACKUP CODE, AND MAY WORK REALLY BADLY WITH PROJECTS! SO, BE SURE TO USE THE MAIN BRANCH!!!)
-
 First, you need to clone the project, and extract it, after that, just copy the swapi.h and the swapi.dll files onto your project. After that, to start using it just include it, like this:
 
 ```
@@ -458,6 +456,7 @@ gcc -o main.exe -s main.o -L. -lswapi
 ## Contributors
 
 - [@hyperdregon](https://github.com/hyperdregon)
+- [@Vodrick](https://github.com/Vodrick)
 
 ## Contribute
 
