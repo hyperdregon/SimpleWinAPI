@@ -36,6 +36,11 @@ HWND swapi_showbselement(char *type, LPCWSTR path){
     HWND hwnd;
     if(strcmp(type, "button") == 0) hwnd = CreateWindow("BUTTON", bselemprots.bselemtext, WS_VISIBLE | WS_CHILD, bselemprots.x, bselemprots.y, bselemprots.width, bselemprots.height, bselemprots.winhwnd, (HMENU) 1, NULL, NULL);
     else if(strcmp(type, "textfield") == 0) hwnd = CreateWindow("EDIT", bselemprots.bselemtext, WS_VISIBLE | WS_CHILD | WS_BORDER, bselemprots.x, bselemprots.y, bselemprots.width, bselemprots.height, bselemprots.winhwnd, NULL, NULL, NULL);
+    else if(strcmp(type, "image") == 0){
+        HBITMAP bitmap = (HBITMAP) LoadImageW(NULL,path,IMAGE_BITMAP,0,0,LR_LOADFROMFILE);
+        hwnd = CreateWindowW(L"Static", NULL, WS_VISIBLE | WS_CHILD | SS_BITMAP, bselemprots.x, bselemprots.y, bselemprots.width, bselemprots.height, bselemprots.winhwnd, NULL, NULL, NULL);
+        SendMessageW(hwnd, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM) bitmap);
+    }
     return hwnd;
 }
 
