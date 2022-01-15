@@ -11,34 +11,6 @@ I couldn't think about anything to do, because all I wanted was a GUI interface 
 So, here it is! The SimpleWinAPI, which is very lightweight, and simple to use!
 
 
-## Using/Installing the library
-
-First, you need to clone the project, and extract it, after that, just copy the swapi.h and the swapi.dll files onto your project. After that, to start using it just include it, like this:
-
-```
-#include <swapi.h>
-```
-
-And that's it! Than you can start using in your project this library!
-
-## Compiling your project
-
-After your project is ready to be tested/published, you have to compile it (on obj format). To do that, just compile your project the way you want, adding the (-c) option and (-I.), so it includes the swapi.h file. After that you run this command:
-
-```
-gcc -o (exec file) -s (obj file) -L. -lswapi
-```
-
-exec file - The file that the final user is going to execute
-obj file - The file that you compiled earlier
-
-Example:
-
-```
-gcc -I. -c .\main.c -o main.o
-gcc -o main.exe -s main.o -L. -lswapi
-```
-
 ## Contribute
 
 All contributions are welcome!
