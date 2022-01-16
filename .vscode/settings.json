@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "swapi.h": "c"
+        "swapi.h": "c",
+        "stdlib.h": "c"
     }
 }

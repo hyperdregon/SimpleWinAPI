@@ -77,10 +77,22 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
         case WM_COMMAND:
             if(HIWORD(wParam) == BN_CLICKED) {
                 for(int i = 0; i < 1000000; i++){
-                    if(bselemhwnd[i] != NULL){
-                        if ((HWND)lParam == bselemhwnd[i])
+                    if(btnhwnd[i] != NULL){
+                        if ((HWND)lParam == btnhwnd[i])
                         {
-                            void (*func)() = bselemfuncs[i];
+                            void (*func)() = btnfuncs[i];
+                            func();
+                        }
+                    }
+                    else break;
+                }
+            }
+            if(HIWORD(wParam) != EN_SETFOCUS && HIWORD(wParam) != EN_KILLFOCUS) {
+                for(int i = 0; i < 1000000; i++){
+                    if(txtfldhwnd[i] != NULL){
+                        if ((HWND)lParam == txtfldhwnd[i])
+                        {
+                            void (*func)() = txtfldfuncs[i];
                             func();
                         }
                     }
@@ -188,7 +200,7 @@ WNDCLASSW wc;
 int changedstyle = 0;
 DWORD style;
 
-HWND swapi_createwindow(LPCWSTR classname, LPCWSTR windowname, int positionx, int positiony, int width, int height){
+HWND swapi_createwindow(LPCWSTR windowname, int positionx, int positiony, int width, int height){
     window.windowname = windowname;
     window.positionx = positionx;
     window.positiony = positiony;
@@ -198,7 +210,7 @@ HWND swapi_createwindow(LPCWSTR classname, LPCWSTR windowname, int positionx, in
     wc.style = CS_HREDRAW | CS_VREDRAW;
     wc.cbClsExtra = 0;
     wc.cbWndExtra = 0;
-    wc.lpszClassName = classname;
+    wc.lpszClassName = L"WINDOW";
     wc.hInstance = hInstancecp;
     wc.hbrBackground = GetSysColorBrush(COLOR_3DFACE);
     wc.lpfnWndProc = WndProc;

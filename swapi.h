@@ -4,7 +4,7 @@
 
 //WINDOW
 void swapi_init(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
-HWND swapi_createwindow(LPCWSTR classname, LPCWSTR windowname, int positionx, int positiony, int width, int height);
+HWND swapi_createwindow(LPCWSTR windowname, int positionx, int positiony, int width, int height);
 void swapi_changestyle(DWORD newstyle);
 void swapi_changecursor(char *name);
 void swapi_changeicon(char *name);
@@ -12,14 +12,33 @@ void swapi_addwindowevent(char *windowevent, void (*func)());
 void swapi_showwindow();
 void swapi_destroywindow();
 
-//BASICELEMENTS
-extern HWND bselemhwnd[];
-extern void *bselemfuncs[];
+//DESTROYELEM
+void swapi_destroyelement(HWND hwnd);
 
-void swapi_addbselement(HWND winhwnd, LPCTSTR elemtext, int x, int y, int width, int height);
-void swapi_addbselemevent(HWND hwnd, void(*func)());
-HWND swapi_showbselement(char *type, LPCWSTR path);
-void swapi_destroybselement(HWND hwnd);
+//BUTTON
+extern HWND btnhwnd[];
+extern void *btnfuncs[];
+
+void swapi_addbutton(HWND winhwnd, LPCTSTR btntext, int x, int y, int width, int height);
+void swapi_addbtnevent(HWND hwnd, void(*func)());
+HWND swapi_showbutton();
+
+//IMAGE
+extern HWND imghwnd[];
+extern void *imgfuncs[];
+
+void swapi_addimage(HWND winhwnd, int x, int y, int width, int height, LPCWSTR path);
+HWND swapi_showimage();
+
+//TEXTFIELD
+extern HWND txtfldhwnd[];
+extern void *txtfldfuncs[];
+
+void swapi_addtextfield(HWND winhwnd, LPCTSTR txtfldtext, int x, int y, int width, int height);
+void swapi_addtxtfldevent(HWND hwnd, void(*func)());
+HWND swapi_showtextfield();
+LPTSTR swapi_gettxtfldtext(HWND hwnd, int txtsizelimit);
+void swapi_settxtfldtext(HWND hwnd, char *text);
 
 //MENUS
 extern void *submnoptsfuncs[];
@@ -33,8 +52,11 @@ void swapi_showmenu(HWND winhwnd);
 void swapi_addsubmnseparator();
 
 //MESSAGEBOX
-
 void swapi_createmsgbox(HWND winhwnd, LPCTSTR msgboxtext, LPCTSTR msgboxname, UINT msgboxtype);
 int swapi_showmsgbox();
+
+//OPENSAVEFILEWND
+void swapi_createfilepopup(HWND winhwnd, int fnamelength, LPCTSTR filefilter);
+char *swapi_showfilepopup(int savefile);
 
 #endif
