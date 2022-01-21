@@ -200,7 +200,7 @@ WNDCLASSW wc;
 int changedstyle = 0;
 DWORD style;
 
-HWND swapi_createwindow(LPCWSTR windowname, int positionx, int positiony, int width, int height){
+void swapi_initwindow(LPCWSTR windowname, int positionx, int positiony, int width, int height){
     window.windowname = windowname;
     window.positionx = positionx;
     window.positiony = positiony;
@@ -220,6 +220,9 @@ HWND swapi_createwindow(LPCWSTR windowname, int positionx, int positiony, int wi
     if(changedstyle == 0){
         style = WS_OVERLAPPEDWINDOW | WS_VISIBLE;
     }
+}
+
+HWND swapi_createwindow(){
     RegisterClassW(&wc);
     hwnd = CreateWindowW(wc.lpszClassName, window.windowname, style, window.positionx, window.positiony, window.width, window.height, NULL, NULL, hInstancecp, NULL);
     return hwnd;  
