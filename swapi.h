@@ -11,10 +11,9 @@ void swapi_changeicon(char *name);
 void swapi_addwindowevent(char *windowevent, void (*func)());
 HWND swapi_createwindow();
 void swapi_showwindow();
-void swapi_destroywindow();
 
-//DESTROYELEM
-void swapi_destroyelement(HWND hwnd);
+//DESTROY
+void swapi_destroyhwnd(HWND hwnd);
 
 //BUTTON
 extern HWND btnhwnd[];

@@ -2,6 +2,6 @@
 #include <stdlib.h>
 #include <swapi.h>
 
-void swapi_destroyelement(HWND hwnd){
+void swapi_destroyhwnd(HWND hwnd){
     DestroyWindow(hwnd);
 }
