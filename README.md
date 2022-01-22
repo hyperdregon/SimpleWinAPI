@@ -10,9 +10,7 @@ I couldn't think about anything to do, because all I wanted was a GUI interface 
 
 So, here it is! The SimpleWinAPI, which is very lightweight, and simple to use!
 
-Project wiki has all information needed to start using this project.
-
-[- WIKI](https://github.com/hyperdregon/SimpleWinAPI/wiki)
+[Project wiki](https://github.com/hyperdregon/SimpleWinAPI/wiki) has all information needed to start using this project.
 
 
 ## Contribute
