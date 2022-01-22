@@ -75,29 +75,74 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             PostQuitMessage(0);
             break;
         case WM_COMMAND:
-            if(HIWORD(wParam) == BN_CLICKED) {
-                for(int i = 0; i < 1000000; i++){
-                    if(btnhwnd[i] != NULL){
-                        if ((HWND)lParam == btnhwnd[i])
-                        {
+            for(int i = 0; i < 1000000; i++){
+                if(btnhwnd[i] != NULL){
+                    if ((HWND)lParam == btnhwnd[i]) {
+                        if(HIWORD(wParam) == BN_CLICKED && strcmp(btneventtype[i], "clicked") == 0) {
+                            void (*func)() = btnfuncs[i];
+                            func();
+                        }
+                        else if(HIWORD(wParam) == BN_DOUBLECLICKED && strcmp(btneventtype[i], "doubleclicked") == 0) {
+                            void (*func)() = btnfuncs[i];
+                            func();
+                        }
+                        else if(HIWORD(wParam) == BN_DISABLE && strcmp(btneventtype[i], "disable") == 0) {
+                            void (*func)() = btnfuncs[i];
+                            func();
+                        }
+                        else if(HIWORD(wParam) == BN_HILITE && strcmp(btneventtype[i], "hilite") == 0) {
+                            void (*func)() = btnfuncs[i];
+                            func();
+                        }
+                        else if(HIWORD(wParam) == BN_KILLFOCUS && strcmp(btneventtype[i], "killfocus") == 0) {
+                            void (*func)() = btnfuncs[i];
+                            func();
+                        }
+                        else if(HIWORD(wParam) == BN_PAINT && strcmp(btneventtype[i], "paint") == 0) {
+                            void (*func)() = btnfuncs[i];
+                            func();
+                        }
+                        else if(HIWORD(wParam) == BN_PUSHED && strcmp(btneventtype[i], "pushed") == 0) {
+                            void (*func)() = btnfuncs[i];
+                            func();
+                        }
+                        else if(HIWORD(wParam) == BN_SETFOCUS && strcmp(btneventtype[i], "setfocus") == 0) {
+                            void (*func)() = btnfuncs[i];
+                            func();
+                        }
+                        else if(HIWORD(wParam) == BN_UNHILITE && strcmp(btneventtype[i], "unhilite") == 0) {
+                            void (*func)() = btnfuncs[i];
+                            func();
+                        }
+                        else if(HIWORD(wParam) == BN_UNPUSHED && strcmp(btneventtype[i], "unpushed") == 0) {
                             void (*func)() = btnfuncs[i];
                             func();
                         }
                     }
-                    else break;
                 }
+                else break;
             }
-            if(HIWORD(wParam) != EN_SETFOCUS && HIWORD(wParam) != EN_KILLFOCUS) {
-                for(int i = 0; i < 1000000; i++){
-                    if(txtfldhwnd[i] != NULL){
-                        if ((HWND)lParam == txtfldhwnd[i])
-                        {
+            for(int i = 0; i < 1000000; i++){
+                if(txtfldhwnd[i] != NULL){
+                    if ((HWND)lParam == txtfldhwnd[i]) {
+                        if(HIWORD(wParam) != EN_SETFOCUS && HIWORD(wParam) != EN_KILLFOCUS) {
                             void (*func)() = txtfldfuncs[i];
                             func();
                         }
                     }
-                    else break;
                 }
+                else break;
+            }
+            for(int i = 0; i < 1000; i++){
+                if(txtfldhwnd[i] != NULL){
+                    if ((HWND)lParam == txtfldhwnd[i]) {
+                        if(HIWORD(wParam) != EN_SETFOCUS && HIWORD(wParam) != EN_KILLFOCUS) {
+                            void (*func)() = txtfldfuncs[i];
+                            func();
+                        }
+                    }
+                }
+                else break;
             }
             for(int i = 0; i < 1000; i++){
                 if(submnoptsfuncs[i] != NULL){

@@ -4,16 +4,16 @@ mkbuilddir: compdll
 compdll: linkobjs
 	gcc -s -shared swapi.o -o swapi.dll -lcomdlg32
 
-linkobjs: window.o destroyelem.o menus.o msgbox.o filepopup.o button.o image.o textfield.o
-	ld -relocatable window.o destroyelem.o menus.o msgbox.o filepopup.o button.o image.o textfield.o -o swapi.o
+linkobjs: window.o destroy.o menus.o msgbox.o filepopup.o button.o image.o textfield.o
+	ld -relocatable window.o destroy.o menus.o msgbox.o filepopup.o button.o image.o textfield.o -o swapi.o
 
 all: 
 
 window.o:
 	gcc -I. -c src\Windows\window.c
 
-destroyelem.o:
-	gcc -I. -c src\Elements\destroyelem.c
+destroy.o:
+	gcc -I. -c src\destroy.c
 
 menus.o:
 	gcc -I. -c src\Elements\menus.c

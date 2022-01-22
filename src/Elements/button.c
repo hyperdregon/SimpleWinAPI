@@ -25,10 +25,13 @@ int btncount = 0;
 
 HWND btnhwnd[1000000];
 void *btnfuncs[1000000];
+char *btneventtype[1000000];
 
-void swapi_addbtnevent(HWND hwnd, void(*func)()){
+void swapi_addbtnevent(HWND hwnd, void(*func)(), char *eventtype){
     btnhwnd[btncount] = hwnd;
     btnfuncs[btncount] = func;
+    btneventtype[btncount] = (char *) malloc(sizeof(char)*strlen(eventtype));
+    strcpy(btneventtype[btncount], eventtype);
     btncount++;
 }
 

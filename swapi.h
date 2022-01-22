@@ -12,15 +12,17 @@ void swapi_addwindowevent(char *windowevent, void (*func)());
 HWND swapi_createwindow();
 void swapi_showwindow();
 
-//DESTROY
+//GENERALHWNDFUNCS
 void swapi_destroyhwnd(HWND hwnd);
+void swapi_enablehwnd(HWND hwnd, BOOL enable);
 
 //BUTTON
 extern HWND btnhwnd[];
 extern void *btnfuncs[];
+extern char *btneventtype[];
 
 void swapi_addbutton(HWND winhwnd, LPCTSTR btntext, int x, int y, int width, int height);
-void swapi_addbtnevent(HWND hwnd, void(*func)());
+void swapi_addbtnevent(HWND hwnd, void(*func)(), char *eventtype);
 HWND swapi_showbutton();
 
 //IMAGE
