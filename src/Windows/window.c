@@ -69,6 +69,41 @@ struct winproperties window;
 struct wineventfuncs eventfuncs;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+    if(windoweventcp != NULL && strcmp(windoweventcp, "") != 0){
+        if(msg == WM_NULL && strstr(windoweventcp, "null")) eventfuncs.funccp1();
+        if(msg == WM_CREATE && strstr(windoweventcp, "create")) eventfuncs.funccp2();
+        if(msg == WM_MOVE && strstr(windoweventcp, "move")) eventfuncs.funccp4();
+        if(msg == WM_SIZE && strstr(windoweventcp, "size")) eventfuncs.funccp5();
+        if(msg == WM_ACTIVATE && strstr(windoweventcp, "activate")) eventfuncs.funccp6();
+        if(msg == WM_SETFOCUS && strstr(windoweventcp, "setfocus")) eventfuncs.funccp7();
+        if(msg == WM_KILLFOCUS && strstr(windoweventcp, "killfocus")) eventfuncs.funccp8();
+        if(msg == WM_ENABLE && strstr(windoweventcp, "enable")) eventfuncs.funccp9();
+        if(msg == WM_SETREDRAW && strstr(windoweventcp, "setredraw")) eventfuncs.funccp10();
+        if(msg == WM_SETTEXT && strstr(windoweventcp, "settext")) eventfuncs.funccp11();
+        if(msg == WM_GETTEXT && strstr(windoweventcp, "gettext")) eventfuncs.funccp12();
+        if(msg == WM_GETTEXTLENGTH && strstr(windoweventcp, "gettextlength")) eventfuncs.funccp13();
+        if(msg == WM_PAINT && strstr(windoweventcp, "paint")) eventfuncs.funccp14();
+        if(msg == WM_CLOSE && strstr(windoweventcp, "close")) eventfuncs.funccp15();
+        if(msg == WM_QUERYENDSESSION && strstr(windoweventcp, "queryendsession")) eventfuncs.funccp16();
+        if(msg == WM_QUERYOPEN && strstr(windoweventcp, "queryopen")) eventfuncs.funccp17();
+        if(msg == WM_ENDSESSION && strstr(windoweventcp, "endsession")) eventfuncs.funccp18();
+        if(msg == WM_QUIT && strstr(windoweventcp, "quit")) eventfuncs.funccp19();
+        if(msg == WM_ERASEBKGND && strstr(windoweventcp, "erasebkgnd")) eventfuncs.funccp20();
+        if(msg == WM_SYSCOLORCHANGE && strstr(windoweventcp, "syscolorchange")) eventfuncs.funccp21();
+        if(msg == WM_SHOWWINDOW && strstr(windoweventcp, "showwindow")) eventfuncs.funccp22();
+        if(msg == WM_WININICHANGE && strstr(windoweventcp, "wininitchange")) eventfuncs.funccp23();
+        if(msg == WM_SETTINGCHANGE && strstr(windoweventcp, "settingchange")) eventfuncs.funccp24();
+        if(msg == WM_DEVMODECHANGE && strstr(windoweventcp, "devmodechange")) eventfuncs.funccp25();
+        if(msg == WM_ACTIVATEAPP && strstr(windoweventcp, "activateapp")) eventfuncs.funccp26();
+        if(msg == WM_FONTCHANGE && strstr(windoweventcp, "fontchange")) eventfuncs.funccp27();
+        if(msg == WM_TIMECHANGE && strstr(windoweventcp, "timechange")) eventfuncs.funccp28();
+        if(msg == WM_CANCELMODE && strstr(windoweventcp, "cancelmode")) eventfuncs.funccp29();
+        if(msg == WM_SETCURSOR && strstr(windoweventcp, "setcursor")) eventfuncs.funccp30();
+        if(msg == WM_MOUSEACTIVATE && strstr(windoweventcp, "mouseactivate")) eventfuncs.funccp31();
+        if(msg == WM_CHILDACTIVATE && strstr(windoweventcp, "childactivate")) eventfuncs.funccp32();
+        if(msg == WM_QUEUESYNC && strstr(windoweventcp, "queuesync")) eventfuncs.funccp33();
+        if(msg == WM_GETMINMAXINFO && strstr(windoweventcp, "getminmaxinfo")) eventfuncs.funccp34();
+    }
     switch (msg)
     {
         case WM_DESTROY:
@@ -154,41 +189,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 else break;
             }
             break;
-    }
-    if(windoweventcp != NULL && strcmp(windoweventcp, "") != 0){
-        if(msg == WM_NULL && strstr(windoweventcp, "null")) eventfuncs.funccp1();
-        if(msg == WM_CREATE && strstr(windoweventcp, "create")) eventfuncs.funccp2();
-        if(msg == WM_MOVE && strstr(windoweventcp, "move")) eventfuncs.funccp4();
-        if(msg == WM_SIZE && strstr(windoweventcp, "size")) eventfuncs.funccp5();
-        if(msg == WM_ACTIVATE && strstr(windoweventcp, "activate")) eventfuncs.funccp6();
-        if(msg == WM_SETFOCUS && strstr(windoweventcp, "setfocus")) eventfuncs.funccp7();
-        if(msg == WM_KILLFOCUS && strstr(windoweventcp, "killfocus")) eventfuncs.funccp8();
-        if(msg == WM_ENABLE && strstr(windoweventcp, "enable")) eventfuncs.funccp9();
-        if(msg == WM_SETREDRAW && strstr(windoweventcp, "setredraw")) eventfuncs.funccp10();
-        if(msg == WM_SETTEXT && strstr(windoweventcp, "settext")) eventfuncs.funccp11();
-        if(msg == WM_GETTEXT && strstr(windoweventcp, "gettext")) eventfuncs.funccp12();
-        if(msg == WM_GETTEXTLENGTH && strstr(windoweventcp, "gettextlength")) eventfuncs.funccp13();
-        if(msg == WM_PAINT && strstr(windoweventcp, "paint")) eventfuncs.funccp14();
-        if(msg == WM_CLOSE && strstr(windoweventcp, "close")) eventfuncs.funccp15();
-        if(msg == WM_QUERYENDSESSION && strstr(windoweventcp, "queryendsession")) eventfuncs.funccp16();
-        if(msg == WM_QUERYOPEN && strstr(windoweventcp, "queryopen")) eventfuncs.funccp17();
-        if(msg == WM_ENDSESSION && strstr(windoweventcp, "endsession")) eventfuncs.funccp18();
-        if(msg == WM_QUIT && strstr(windoweventcp, "quit")) eventfuncs.funccp19();
-        if(msg == WM_ERASEBKGND && strstr(windoweventcp, "erasebkgnd")) eventfuncs.funccp20();
-        if(msg == WM_SYSCOLORCHANGE && strstr(windoweventcp, "syscolorchange")) eventfuncs.funccp21();
-        if(msg == WM_SHOWWINDOW && strstr(windoweventcp, "showwindow")) eventfuncs.funccp22();
-        if(msg == WM_WININICHANGE && strstr(windoweventcp, "wininitchange")) eventfuncs.funccp23();
-        if(msg == WM_SETTINGCHANGE && strstr(windoweventcp, "settingchange")) eventfuncs.funccp24();
-        if(msg == WM_DEVMODECHANGE && strstr(windoweventcp, "devmodechange")) eventfuncs.funccp25();
-        if(msg == WM_ACTIVATEAPP && strstr(windoweventcp, "activateapp")) eventfuncs.funccp26();
-        if(msg == WM_FONTCHANGE && strstr(windoweventcp, "fontchange")) eventfuncs.funccp27();
-        if(msg == WM_TIMECHANGE && strstr(windoweventcp, "timechange")) eventfuncs.funccp28();
-        if(msg == WM_CANCELMODE && strstr(windoweventcp, "cancelmode")) eventfuncs.funccp29();
-        if(msg == WM_SETCURSOR && strstr(windoweventcp, "setcursor")) eventfuncs.funccp30();
-        if(msg == WM_MOUSEACTIVATE && strstr(windoweventcp, "mouseactivate")) eventfuncs.funccp31();
-        if(msg == WM_CHILDACTIVATE && strstr(windoweventcp, "childactivate")) eventfuncs.funccp32();
-        if(msg == WM_QUEUESYNC && strstr(windoweventcp, "queuesync")) eventfuncs.funccp33();
-        if(msg == WM_GETMINMAXINFO && strstr(windoweventcp, "getminmaxinfo")) eventfuncs.funccp34();
     }
     return DefWindowProcW(hwnd, msg, wParam, lParam);
 }
