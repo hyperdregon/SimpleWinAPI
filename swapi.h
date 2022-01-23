@@ -61,4 +61,8 @@ int swapi_showmsgbox();
 void swapi_createfilepopup(HWND winhwnd, int fnamelength, LPCTSTR filefilter);
 char *swapi_showfilepopup(int savefile);
 
+//TEXT
+void swapi_createtext(HWND winhwnd, LPCSTR text, int x, int y, int width, int height);
+HWND swapi_showtext();
+
 #endif
