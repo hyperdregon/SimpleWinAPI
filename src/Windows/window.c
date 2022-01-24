@@ -54,6 +54,7 @@ struct wineventfuncs {
 };
 
 int closewindow = 0;
+int crtevntenable = 0;
 
 char *windoweventcp;
 
@@ -72,6 +73,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     if(windoweventcp != NULL && strcmp(windoweventcp, "") != 0){
         if(msg == WM_NULL && strstr(windoweventcp, "null")) eventfuncs.funccp1();
         if(msg == WM_CREATE && strstr(windoweventcp, "create")) eventfuncs.funccp2();
+        if(msg == WM_DESTROY && strstr(windoweventcp, "destroy")) eventfuncs.funccp3();
         if(msg == WM_MOVE && strstr(windoweventcp, "move")) eventfuncs.funccp4();
         if(msg == WM_SIZE && strstr(windoweventcp, "size")) eventfuncs.funccp5();
         if(msg == WM_ACTIVATE && strstr(windoweventcp, "activate")) eventfuncs.funccp6();
@@ -245,7 +247,7 @@ WNDCLASSW wc;
 int changedstyle = 0;
 DWORD style;
 
-void swapi_initwindow(LPCWSTR windowname, int positionx, int positiony, int width, int height){
+void swapi_createwindow(LPCWSTR windowname, int positionx, int positiony, int width, int height){
     window.windowname = windowname;
     window.positionx = positionx;
     window.positiony = positiony;
@@ -267,15 +269,15 @@ void swapi_initwindow(LPCWSTR windowname, int positionx, int positiony, int widt
     }
 }
 
-HWND swapi_createwindow(){
-    RegisterClassW(&wc);
-    hwnd = CreateWindowW(wc.lpszClassName, window.windowname, style, window.positionx, window.positiony, window.width, window.height, NULL, NULL, hInstancecp, NULL);
-    return hwnd;  
-}
-
 int runnedfunc = 0;
 
-void swapi_showwindow(){
+HWND swapi_showwindow(){
+    RegisterClassW(&wc);
+    hwnd = CreateWindowW(wc.lpszClassName, window.windowname, style, window.positionx, window.positiony, window.width, window.height, NULL, NULL, hInstancecp, NULL);
+    if(crtevntenable == 1) {
+        eventfuncs.funccp2();
+        crtevntenable = 0;
+    }
     ShowWindow(hwnd, nCmdShowcp);
     UpdateWindow(hwnd);
     while (GetMessage(&msg, NULL, 0, 0)) {
@@ -283,6 +285,7 @@ void swapi_showwindow(){
         DispatchMessage(&msg);
     }
     changedstyle = 0;
+    return hwnd;  
 }
 
 void swapi_changestyle(DWORD newstyle){

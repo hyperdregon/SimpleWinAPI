@@ -4,13 +4,12 @@
 
 //WINDOW
 void swapi_init(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
-void swapi_initwindow(LPCWSTR windowname, int positionx, int positiony, int width, int height);
+void swapi_createwindow(LPCWSTR windowname, int positionx, int positiony, int width, int height);
 void swapi_changestyle(DWORD newstyle);
 void swapi_changecursor(char *name);
 void swapi_changeicon(char *name);
 void swapi_addwindowevent(char *windowevent, void (*func)());
-HWND swapi_createwindow();
-void swapi_showwindow();
+HWND swapi_showwindow();
 
 //GENERALHWNDFUNCS
 void swapi_destroyhwnd(HWND hwnd);
@@ -64,5 +63,8 @@ char *swapi_showfilepopup(int savefile);
 //TEXT
 void swapi_createtext(HWND winhwnd, LPCSTR text, int x, int y, int width, int height);
 HWND swapi_showtext();
+
+//OTHERWINDOWPROPERTIES
+void swapi_changefont(HWND winhwnd);
 
 #endif
