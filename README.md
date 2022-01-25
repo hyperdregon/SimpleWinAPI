@@ -12,6 +12,8 @@ So, here it is! The SimpleWinAPI, which is very lightweight, and simple to use!
 
 [Project wiki](https://github.com/hyperdregon/SimpleWinAPI/wiki) has all information needed to start using this project.
 
+If you want to report a bug or a typo on the library code or the README or wiki, use the issues tab. For help, suggestions and announcements, check the discussions tab.
+
 
 ## Contribute
 
