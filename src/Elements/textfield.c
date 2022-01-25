@@ -44,5 +44,6 @@ void swapi_settxtfldtext(HWND hwnd, char *text){
 
 HWND swapi_showtextfield(){
     HWND hwnd = CreateWindow("EDIT", txtfldprots.txtfldtext, WS_VISIBLE | WS_CHILD, txtfldprots.x, txtfldprots.y, txtfldprots.width, txtfldprots.height, txtfldprots.winhwnd, (HMENU) 1, NULL, NULL);
+    SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
     return hwnd;
 }

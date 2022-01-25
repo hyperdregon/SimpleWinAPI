@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <swapi.h>
-#include <wingdi.h>
 
 struct textproperties {
     HDC hdc;
@@ -26,5 +25,6 @@ void swapi_createtext(HWND winhwnd, LPCSTR text, int x, int y, int width, int he
 
 HWND swapi_showtext(){
     HWND hwnd = CreateWindow("STATIC", textprots.text, WS_VISIBLE | WS_CHILD, textprots.x, textprots.y, textprots.width, textprots.height, textprots.winhwnd, NULL, NULL, NULL);
+    SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
     return hwnd;
 }

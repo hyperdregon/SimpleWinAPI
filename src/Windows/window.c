@@ -66,6 +66,8 @@ struct winproperties {
     int height;
 };
 
+HFONT hfont;
+
 struct winproperties window;
 struct wineventfuncs eventfuncs;
 
@@ -111,6 +113,16 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     {
         case WM_DESTROY:
             PostQuitMessage(0);
+            break;
+        case WM_CREATE:
+            if (!hfont)
+            {
+                NONCLIENTMETRICS metrics;
+                metrics.cbSize = sizeof(NONCLIENTMETRICS);
+                SystemParametersInfo(SPI_GETNONCLIENTMETRICS, sizeof(NONCLIENTMETRICS), &metrics, 0);
+                hfont = CreateFontIndirect(&metrics.lfMessageFont);
+            }
+            SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
             break;
         case WM_COMMAND:
             for(int i = 0; i < 1000000; i++){
@@ -261,7 +273,7 @@ void swapi_initwindow(LPCWSTR windowname, int positionx, int positiony, int widt
     wc.cbWndExtra = 0;
     wc.lpszClassName = L"WINDOW";
     wc.hInstance = hInstancecp;
-    wc.hbrBackground = GetSysColorBrush(COLOR_3DFACE);
+    wc.hbrBackground = (HBRUSH)(COLOR_BTNFACE + 1);
     wc.lpfnWndProc = WndProc;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
     wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
@@ -274,6 +286,8 @@ void swapi_initwindow(LPCWSTR windowname, int positionx, int positiony, int widt
 HWND swapi_createwindow(){
     RegisterClassW(&wc);
     hwnd = CreateWindowW(wc.lpszClassName, window.windowname, style, window.positionx, window.positiony, window.width, window.height, NULL, NULL, hInstancecp, NULL);
+    HFONT hFont = CreateFontW(20, 0, 0, 0, FW_DONTCARE, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, L"Arial");
+    SendMessage(hwnd, WM_SETFONT, (WPARAM) hFont, TRUE);
     GetMessage(&msg, NULL, 0, 0);
     TranslateMessage(&msg);
     DispatchMessage(&msg);

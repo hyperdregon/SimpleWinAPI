@@ -3,6 +3,8 @@
 #include <windows.h>
 
 //WINDOW
+extern HFONT hfont;
+
 void swapi_init(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow);
 void swapi_initwindow(LPCWSTR windowname, int positionx, int positiony, int width, int height);
 void swapi_changestyle(DWORD newstyle);
@@ -64,8 +66,5 @@ char *swapi_showfilepopup(int savefile);
 //TEXT
 void swapi_createtext(HWND winhwnd, LPCSTR text, int x, int y, int width, int height);
 HWND swapi_showtext();
-
-//OTHERWINDOWPROPERTIES
-void swapi_changefont(HWND winhwnd);
 
 #endif
