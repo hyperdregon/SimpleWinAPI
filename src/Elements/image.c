@@ -12,7 +12,7 @@ struct imgproperties {
 };
 struct imgproperties imgprots;
 
-void swapi_addimage(HWND winhwnd, int x, int y, int width, int height, LPCWSTR path){
+void swapi_createimage(HWND winhwnd, int x, int y, int width, int height, LPCWSTR path){
     imgprots.winhwnd = winhwnd;
     imgprots.x = x;
     imgprots.y = y;

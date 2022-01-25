@@ -12,7 +12,7 @@ struct btnproperties {
 };
 struct btnproperties btnprots;
 
-void swapi_addbutton(HWND winhwnd, LPCTSTR btntext, int x, int y, int width, int height){
+void swapi_createbutton(HWND winhwnd, LPCTSTR btntext, int x, int y, int width, int height){
     btnprots.winhwnd = winhwnd;
     btnprots.btntext = btntext;
     btnprots.x = x;
@@ -27,7 +27,7 @@ HWND btnhwnd[1000000];
 void *btnfuncs[1000000];
 char *btneventtype[1000000];
 
-void swapi_addbtnevent(HWND hwnd, void(*func)(), char *eventtype){
+void swapi_createbtnevent(HWND hwnd, void(*func)(), char *eventtype){
     btnhwnd[btncount] = hwnd;
     btnfuncs[btncount] = func;
     btneventtype[btncount] = (char *) malloc(sizeof(char)*strlen(eventtype));

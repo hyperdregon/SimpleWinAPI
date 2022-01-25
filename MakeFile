@@ -2,7 +2,7 @@ mkbuilddir: compdll
 	powershell -command rm *.o
 
 compdll: linkobjs
-	gcc -s -shared swapi.o -o swapi.dll -lcomdlg32 -lgdi32
+	gcc -s -shared swapi.o -o swapi.dll -lcomdlg32 -lgdi32 -lcomctl32
 
 linkobjs: window.o gnrlhwndfuncs.o menus.o msgbox.o filepopup.o button.o image.o textfield.o text.o otherwinprots.o
 	ld -relocatable window.o gnrlhwndfuncs.o menus.o msgbox.o filepopup.o button.o image.o textfield.o text.o otherwinprots.o -o swapi.o

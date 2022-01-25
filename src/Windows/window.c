@@ -196,7 +196,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     return DefWindowProcW(hwnd, msg, wParam, lParam);
 }
 
-void swapi_addwindowevent(char *windowevent, void (*func)()){
+void swapi_setwindowevent(char *windowevent, void (*func)()){
     if(windoweventcp == NULL || strcmp(windoweventcp, "") == 0){
         windoweventcp = (char *) malloc(sizeof(char)*1000000);
         strcpy(windoweventcp, windowevent);

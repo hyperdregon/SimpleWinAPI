@@ -12,7 +12,7 @@ struct txtfldproperties {
 };
 struct txtfldproperties txtfldprots;
 
-void swapi_addtextfield(HWND winhwnd, LPCTSTR txtfldtext, int x, int y, int width, int height){
+void swapi_createtextfield(HWND winhwnd, LPCTSTR txtfldtext, int x, int y, int width, int height){
     txtfldprots.winhwnd = winhwnd;
     txtfldprots.txtfldtext = txtfldtext;
     txtfldprots.x = x;
@@ -26,7 +26,7 @@ int txtfldcount = 0;
 HWND txtfldhwnd[1000000];
 void *txtfldfuncs[1000000];
 
-void swapi_addtxtfldevent(HWND hwnd, void(*func)()){
+void swapi_createtxtfldevent(HWND hwnd, void(*func)()){
     txtfldhwnd[txtfldcount] = hwnd;
     txtfldfuncs[txtfldcount] = func;
     txtfldcount++;
