@@ -14,51 +14,6 @@ So, here it is! The SimpleWinAPI, which is very lightweight, and simple to use!
 
 If you want to report a bug or a typo on the library code or the README or wiki, use the issues tab. For help, suggestions and announcements, check the discussions tab.
 
-## Enable good looking elements
-
-To do this, you have to create a manifest file, that is called (appname).exe.manifest. After that, open this file, and put this content in it.
-
-```
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-
-<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
-  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
-    <application>
-      <!-- Supports Windows Vista / Server 2008 -->
-      <supportedOS Id="{e2011457-1546-43c5-a5fe-008deee3d3f0}"/>
-      <!-- Supports Windows 7 / Server 2008 R2 -->
-      <supportedOS Id="{35138b9a-5d96-4fbd-8e2d-a2440225f93a}"/>
-      <!-- Supports Windows 8 / Server 2012 -->
-      <supportedOS Id="{4a2f28e3-53b9-4441-ba9c-d69d4a4a6e38}"/>
-      <!-- Supports Windows 8.1 / Server 2012 R2 -->
-      <supportedOS Id="{1f676c76-80e1-4239-95bb-83d0f6d0da78}"/>
-      <!-- Supports Windows 10 -->
-      <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}"/>
-    </application>
-  </compatibility>
-  <trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">
-    <security>
-      <requestedPrivileges>
-        <requestedExecutionLevel level="asInvoker" uiAccess="false"/>
-      </requestedPrivileges>
-    </security>
-  </trustInfo>
-  <dependency>
-    <dependentAssembly>
-      <assemblyIdentity type="Win32" name="Microsoft.Windows.Common-Controls" version="6.0.0.0" processorArchitecture="*" publicKeyToken="6595b64144ccf1df" language="*"/>
-    </dependentAssembly>
-  </dependency>
-</assembly>
-```
-
-After that, save the file, and run this command, to integrate the manifest file with the exe file:
-
-```
-mt -manifest (appname).exe.manifest -outputresource:(appname).exe 
-```
-
-And then, you can run the program! And the new window appearance will be visible.
-
 ## Contribute
 
 All contributions are welcome!
