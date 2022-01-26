@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <swapi.h>
+#include <commctrl.h>
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){ return 0; }
 
@@ -115,6 +116,11 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             PostQuitMessage(0);
             break;
         case WM_CREATE:
+            INITCOMMONCONTROLSEX icc;
+
+            icc.dwSize = sizeof(icc);
+            icc.dwICC = ICC_WIN95_CLASSES;
+            InitCommonControlsEx(&icc);
             if (!hfont)
             {
                 NONCLIENTMETRICS metrics;
