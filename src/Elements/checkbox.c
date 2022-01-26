@@ -24,10 +24,12 @@ void swapi_createcheckbox(HWND winhwnd, LPCTSTR chkboxtext, int x, int y, int wi
 
 int chkboxevntcount = 0;
 
+HWND chkboxhwnd[1000000];
 void *chkboxfuncs[1000000];
 char *chkboxeventtype[1000000];
 
 void swapi_setchkboxevent(HWND hwnd, void(*func)(), char *eventtype){
+    chkboxhwnd[chkboxevntcount] = hwnd;
     chkboxfuncs[chkboxevntcount] = func;
     chkboxeventtype[chkboxevntcount] = (char *) malloc(sizeof(char)*strlen(eventtype));
     strcpy(chkboxeventtype[chkboxevntcount], eventtype);

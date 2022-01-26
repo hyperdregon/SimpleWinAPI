@@ -130,22 +130,6 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
             SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
             break;
         case WM_COMMAND:
-            for(int i = 2, j = 0; i <= chkboxelemcount; i++, j++){
-                if(IsDlgButtonChecked(hwnd, i)){
-                    CheckDlgButton(hwnd, i, BST_UNCHECKED);
-                    if(strcmp(chkboxeventtype[j], "unchecked") == 0){
-                        void (*func)() = chkboxfuncs[j];
-                        func();
-                    }
-                }
-                else {
-                    CheckDlgButton(hwnd, i, BST_CHECKED); 
-                    if(strcmp(chkboxeventtype[j], "checked") == 0){
-                        void (*func)() = chkboxfuncs[j];
-                        func();
-                    }
-                }
-            } 
             for(int i = 0; i < 1000000; i++){
                 if(btnhwnd[i] != NULL){
                     if ((HWND)lParam == btnhwnd[i]) {
@@ -224,6 +208,24 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                    }
                 else break;
             }
+            for(int i = 2, j = 0; i <= chkboxelemcount; i++, j++){
+                if((HWND)lParam == chkboxhwnd[j]){
+                    if(IsDlgButtonChecked(hwnd, i)){
+                        CheckDlgButton(hwnd, i, BST_UNCHECKED);
+                        if(strcmp(chkboxeventtype[j], "unchecked") == 0){
+                            void (*func)() = chkboxfuncs[j];
+                            func();
+                        }
+                    }
+                    else {
+                        CheckDlgButton(hwnd, i, BST_CHECKED); 
+                        if(strcmp(chkboxeventtype[j], "checked") == 0){
+                            void (*func)() = chkboxfuncs[j];
+                            func();
+                        }
+                    }
+                }
+            } 
             break;
     }
     return DefWindowProcW(hwnd, msg, wParam, lParam);

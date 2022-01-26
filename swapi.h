@@ -69,6 +69,7 @@ void swapi_createtext(HWND winhwnd, LPCSTR text, int x, int y, int width, int he
 HWND swapi_showtext();
 
 //CHECKBOX
+extern HWND chkboxhwnd[];
 extern void *chkboxfuncs[];
 extern char *chkboxeventtype[];
 extern int chkboxelemcount;
