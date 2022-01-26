@@ -1,6 +1,7 @@
 #ifndef SIMPLEWINAPI_H
 #define SIMPLEWINAPI_H
 #include <windows.h>
+#include <commctrl.h>
 
 //WINDOW
 extern HFONT hfont;
@@ -24,7 +25,7 @@ extern void *btnfuncs[];
 extern char *btneventtype[];
 
 void swapi_createbutton(HWND winhwnd, LPCTSTR btntext, int x, int y, int width, int height);
-void swapi_createbtnevent(HWND hwnd, void(*func)(), char *eventtype);
+void swapi_setbtnevent(HWND hwnd, void(*func)(), char *eventtype);
 HWND swapi_showbutton();
 
 //IMAGE
@@ -38,8 +39,8 @@ HWND swapi_showimage();
 extern HWND txtfldhwnd[];
 extern void *txtfldfuncs[];
 
-void swapi_createtextfield(HWND winhwnd, LPCTSTR txtfldtext, int x, int y, int width, int height);
-void swapi_createtxtfldevent(HWND hwnd, void(*func)());
+void swapi_createtextfield(HWND winhwnd, LPCTSTR txtfldtext, int x, int y, int width, int height, int multiline);
+void swapi_settxtfldevent(HWND hwnd, void(*func)());
 HWND swapi_showtextfield();
 LPTSTR swapi_gettxtfldtext(HWND hwnd, int txtsizelimit);
 void swapi_settxtfldtext(HWND hwnd, char *text);
@@ -66,5 +67,14 @@ char *swapi_showfilepopup(int savefile);
 //TEXT
 void swapi_createtext(HWND winhwnd, LPCSTR text, int x, int y, int width, int height);
 HWND swapi_showtext();
+
+//CHECKBOX
+extern void *chkboxfuncs[];
+extern char *chkboxeventtype[];
+extern int chkboxelemcount;
+
+void swapi_createcheckbox(HWND winhwnd, LPCTSTR chkboxtext, int x, int y, int width, int height);
+void swapi_setchkboxevent(HWND hwnd, void(*func)(), char *eventtype);
+HWND swapi_showcheckbox();
 
 #endif

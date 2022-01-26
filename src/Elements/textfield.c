@@ -9,27 +9,29 @@ struct txtfldproperties {
     int y; 
     int width; 
     int height;
+    int multiline;
 };
 struct txtfldproperties txtfldprots;
 
-void swapi_createtextfield(HWND winhwnd, LPCTSTR txtfldtext, int x, int y, int width, int height){
+void swapi_createtextfield(HWND winhwnd, LPCTSTR txtfldtext, int x, int y, int width, int height, int multiline){
     txtfldprots.winhwnd = winhwnd;
     txtfldprots.txtfldtext = txtfldtext;
     txtfldprots.x = x;
     txtfldprots.y = y;
     txtfldprots.width = width;
     txtfldprots.height = height;
+    txtfldprots.multiline = multiline;
 }
 
-int txtfldcount = 0;
+int txtfldevntcount = 0;
 
 HWND txtfldhwnd[1000000];
 void *txtfldfuncs[1000000];
 
-void swapi_createtxtfldevent(HWND hwnd, void(*func)()){
-    txtfldhwnd[txtfldcount] = hwnd;
-    txtfldfuncs[txtfldcount] = func;
-    txtfldcount++;
+void swapi_settxtfldevent(HWND hwnd, void(*func)()){
+    txtfldhwnd[txtfldevntcount] = hwnd;
+    txtfldfuncs[txtfldevntcount] = func;
+    txtfldevntcount++;
 }
 
 LPTSTR swapi_gettxtfldtext(HWND hwnd, int txtsizelimit){
@@ -43,7 +45,11 @@ void swapi_settxtfldtext(HWND hwnd, char *text){
 }
 
 HWND swapi_showtextfield(){
-    HWND hwnd = CreateWindow("EDIT", txtfldprots.txtfldtext, WS_VISIBLE | WS_CHILD, txtfldprots.x, txtfldprots.y, txtfldprots.width, txtfldprots.height, txtfldprots.winhwnd, (HMENU) 1, NULL, NULL);
+    HWND hwnd;
+    if(txtfldprots.multiline == 0)
+        hwnd = CreateWindow("EDIT", txtfldprots.txtfldtext, WS_VISIBLE | WS_CHILD, txtfldprots.x, txtfldprots.y, txtfldprots.width, txtfldprots.height, txtfldprots.winhwnd, (HMENU) 1, NULL, NULL);
+    else if(txtfldprots.multiline == 1)
+        hwnd = CreateWindow("EDIT", txtfldprots.txtfldtext, WS_VISIBLE | WS_CHILD | ES_MULTILINE, txtfldprots.x, txtfldprots.y, txtfldprots.width, txtfldprots.height, txtfldprots.winhwnd, (HMENU) 1, NULL, NULL);
     SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
     return hwnd;
 }
