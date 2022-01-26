@@ -14,6 +14,7 @@ So, here it is! The SimpleWinAPI, which is very lightweight, and simple to use!
 
 If you want to report a bug or a typo on the library code or the README or wiki, use the issues tab. For help, suggestions and announcements, check the discussions tab.
 
+
 ## Contribute
 
 All contributions are welcome!
