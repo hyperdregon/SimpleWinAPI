@@ -1,8 +1,8 @@
-mkbuilddir: compdll
+rmobjfiles: compdll
 	powershell -command rm *.o
 
 compdll: linkobjs
-	gcc -s -shared swapi.o -o swapi.dll -lcomdlg32 -lgdi32 -lcomctl32 -luxtheme
+	gcc -s -shared swapi.o -o swapi.dll -lcomdlg32 -lgdi32 -lcomctl32
 
 linkobjs: window.o gnrlhwndfuncs.o menus.o msgbox.o filepopup.o button.o image.o textfield.o text.o checkbox.o
 	ld -relocatable window.o gnrlhwndfuncs.o menus.o msgbox.o filepopup.o button.o image.o textfield.o text.o checkbox.o -o swapi.o
@@ -37,4 +37,4 @@ text.o:
 	gcc -I. -c src\Elements\text.c
 
 checkbox.o:
-	gcc -I. -c src\Elements\checkbox.c
+	gcc -I. -c src\Elements\checkbox.c -Wno-int-to-pointer-cast

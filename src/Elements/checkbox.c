@@ -40,7 +40,7 @@ int chkboxelemcount = 1;
 
 HWND swapi_showcheckbox(){
     chkboxelemcount++;
-    HWND hwnd = CreateWindow("BUTTON", "Checkbox", WS_VISIBLE | WS_CHILD | BS_CHECKBOX, chkboxprots.x, chkboxprots.y, chkboxprots.width, chkboxprots.height, chkboxprots.winhwnd, (HMENU) chkboxelemcount, NULL, NULL);
+    HWND hwnd = CreateWindow("BUTTON", chkboxprots.chkboxtext, WS_VISIBLE | WS_CHILD | BS_CHECKBOX, chkboxprots.x, chkboxprots.y, chkboxprots.width, chkboxprots.height, chkboxprots.winhwnd, (HMENU) chkboxelemcount, NULL, NULL);
     SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
     return hwnd;
 }
