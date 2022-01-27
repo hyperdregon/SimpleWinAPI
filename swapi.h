@@ -65,7 +65,7 @@ void swapi_createfilepopup(HWND winhwnd, int fnamelength, LPCTSTR filefilter);
 char *swapi_showfilepopup(int savefile);
 
 //TEXT
-void swapi_createtext(HWND winhwnd, LPCSTR text, int x, int y, int width, int height);
+void swapi_createtext(HWND winhwnd, LPCSTR text, int x, int y);
 HWND swapi_showtext();
 
 //CHECKBOX
@@ -74,7 +74,7 @@ extern void *chkboxfuncs[];
 extern char *chkboxeventtype[];
 extern int chkboxelemcount;
 
-void swapi_createcheckbox(HWND winhwnd, LPCTSTR chkboxtext, int x, int y, int width, int height);
+void swapi_createcheckbox(HWND winhwnd, LPCTSTR chkboxtext, int x, int y);
 void swapi_setchkboxevent(HWND hwnd, void(*func)(), char *eventtype);
 HWND swapi_showcheckbox();
 

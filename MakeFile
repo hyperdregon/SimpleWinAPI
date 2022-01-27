@@ -1,40 +1,37 @@
-mkbuilddir: compdll
-	powershell -command rm *.o
-
 compdll: linkobjs
-	gcc -s -shared swapi.o -o swapi.dll -lcomdlg32 -lgdi32 -lcomctl32 -luxtheme
+	gcc -s -shared cache\swapi.o -o swapi.dll -lcomdlg32 -lgdi32 -lcomctl32
 
 linkobjs: window.o gnrlhwndfuncs.o menus.o msgbox.o filepopup.o button.o image.o textfield.o text.o checkbox.o
-	ld -relocatable window.o gnrlhwndfuncs.o menus.o msgbox.o filepopup.o button.o image.o textfield.o text.o checkbox.o -o swapi.o
+	ld -relocatable cache\window.o cache\gnrlhwndfuncs.o cache\menus.o cache\msgbox.o cache\filepopup.o cache\button.o cache\image.o cache\textfield.o cache\text.o cache\checkbox.o -o cache\swapi.o
 
 all: 
 
 window.o:
-	gcc -I. -c src\Windows\window.c
+	gcc -I. -c src\Windows\window.c -o cache\window.o
 
 gnrlhwndfuncs.o:
-	gcc -I. -c src\gnrlhwndfuncs.c
+	gcc -I. -c src\gnrlhwndfuncs.c -o cache\gnrlhwndfuncs.o
 
 menus.o:
-	gcc -I. -c src\Elements\menus.c
+	gcc -I. -c src\Elements\menus.c -o cache\menus.o
 
 msgbox.o:
-	gcc -I. -c src\Windows\msgbox.c
+	gcc -I. -c src\Windows\msgbox.c -o cache\msgbox.o
 
 filepopup.o:
-	gcc -I. -c src\Windows\filepopup.c
+	gcc -I. -c src\Windows\filepopup.c -o cache\filepopup.o
 	
 button.o:
-	gcc -I. -c src\Elements\button.c
+	gcc -I. -c src\Elements\button.c -o cache\button.o
 
 image.o:
-	gcc -I. -c src\Elements\image.c
+	gcc -I. -c src\Elements\image.c -o cache\image.o
 
 textfield.o:
-	gcc -I. -c src\Elements\textfield.c
+	gcc -I. -c src\Elements\textfield.c -o cache\textfield.o
 	
 text.o:
-	gcc -I. -c src\Elements\text.c
+	gcc -I. -c src\Elements\text.c -o cache\text.o
 
 checkbox.o:
-	gcc -I. -c src\Elements\checkbox.c
+	gcc -I. -c src\Elements\checkbox.c -o cache\checkbox.o -Wno-int-to-pointer-cast

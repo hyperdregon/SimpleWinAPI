@@ -8,23 +8,25 @@ struct textproperties {
     HWND winhwnd;
     int x;
     int y;
-    int width;
-    int height;
 };
 
 struct textproperties textprots;
 
-void swapi_createtext(HWND winhwnd, LPCSTR text, int x, int y, int width, int height){
+void swapi_createtext(HWND winhwnd, LPCSTR text, int x, int y){
     textprots.text = text;
     textprots.winhwnd = winhwnd;
     textprots.x = x;
     textprots.y = y;
-    textprots.width = width;
-    textprots.height = height;
 }
 
 HWND swapi_showtext(){
-    HWND hwnd = CreateWindow("STATIC", textprots.text, WS_VISIBLE | WS_CHILD, textprots.x, textprots.y, textprots.width, textprots.height, textprots.winhwnd, NULL, NULL, NULL);
+    int numofchar = strlen(textprots.text);
+    int numofnewlines = 0;
+    for(int i = 0; textprots.text[i] != '\0'; i++){
+        if(textprots.text[i] == '\n') numofnewlines++;
+    }
+    numofnewlines++;
+    HWND hwnd = CreateWindow("STATIC", textprots.text, WS_VISIBLE | WS_CHILD, textprots.x, textprots.y, numofchar*10, numofnewlines*20, textprots.winhwnd, NULL, NULL, NULL);
     SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
     return hwnd;
 }

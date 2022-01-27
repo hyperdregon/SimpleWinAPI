@@ -7,19 +7,15 @@ struct chkboxproperties {
     LPCTSTR chkboxtext;
     int x;
     int y; 
-    int width; 
-    int height;
 };
 
 struct chkboxproperties chkboxprots;
 
-void swapi_createcheckbox(HWND winhwnd, LPCTSTR chkboxtext, int x, int y, int width, int height){
+void swapi_createcheckbox(HWND winhwnd, LPCTSTR chkboxtext, int x, int y){
     chkboxprots.winhwnd = winhwnd;
     chkboxprots.chkboxtext = chkboxtext;
     chkboxprots.x = x;
     chkboxprots.y = y;
-    chkboxprots.width = width;
-    chkboxprots.height = height;
 }
 
 int chkboxevntcount = 0;
@@ -40,7 +36,13 @@ int chkboxelemcount = 1;
 
 HWND swapi_showcheckbox(){
     chkboxelemcount++;
-    HWND hwnd = CreateWindow("BUTTON", "Checkbox", WS_VISIBLE | WS_CHILD | BS_CHECKBOX, chkboxprots.x, chkboxprots.y, chkboxprots.width, chkboxprots.height, chkboxprots.winhwnd, (HMENU) chkboxelemcount, NULL, NULL);
+    int numofchar = strlen(chkboxprots.chkboxtext);
+    int numofnewlines = 0;
+    for(int i = 0; chkboxprots.chkboxtext[i] != '\0'; i++){
+        if(chkboxprots.chkboxtext[i] == '\n') numofnewlines++;
+    }
+    numofnewlines++;
+    HWND hwnd = CreateWindow("BUTTON", chkboxprots.chkboxtext, WS_VISIBLE | WS_CHILD | BS_CHECKBOX, chkboxprots.x, chkboxprots.y, numofchar*10, numofnewlines*20, chkboxprots.winhwnd, (HMENU) chkboxelemcount, NULL, NULL);
     SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
     return hwnd;
 }
