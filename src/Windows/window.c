@@ -199,28 +199,40 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                 }
                 else break;
             }
-            for(int i = 0; i < 1000; i++){
+            for(int i = 0; i <= hwndelemcount; i++){
                 if(submnoptsfuncs[i] != NULL){
                     if(wParam == i+1){
                         void (*func)() = submnoptsfuncs[i];
                         func();
                     }
-                   }
-                else break;
+                }
             }
-            for(int i = 2, j = 0; i <= chkboxelemcount; i++, j++){
-                if((HWND)lParam == chkboxhwnd[j]){
-                    if(IsDlgButtonChecked(hwnd, i)){
-                        CheckDlgButton(hwnd, i, BST_UNCHECKED);
-                        if(strcmp(chkboxeventtype[j], "unchecked") == 0){
-                            void (*func)() = chkboxfuncs[j];
-                            func();
+            for(int i = 2, j = 0; i <= hwndelemcount; i++, j++){
+                if(chkboxhwnd[j] != NULL){
+                    if((HWND)lParam == chkboxhwnd[j]){
+                        if(IsDlgButtonChecked(hwnd, i)){
+                            CheckDlgButton(hwnd, i, BST_UNCHECKED);
+                            if(strcmp(chkboxeventtype[j], "unchecked") == 0){
+                                void (*func)() = chkboxfuncs[j];
+                                func();
+                            }
+                        }
+                        else {
+                            CheckDlgButton(hwnd, i, BST_CHECKED); 
+                            if(strcmp(chkboxeventtype[j], "checked") == 0){
+                                void (*func)() = chkboxfuncs[j];
+                                func();
+                            }
                         }
                     }
-                    else {
-                        CheckDlgButton(hwnd, i, BST_CHECKED); 
-                        if(strcmp(chkboxeventtype[j], "checked") == 0){
-                            void (*func)() = chkboxfuncs[j];
+                }
+            } 
+            for(int i = 2, j = 0; i <= hwndelemcount; i++, j++){
+                if(rdiobtnhwnd[j] != NULL){
+                    if((HWND)lParam == rdiobtnhwnd[j]){
+                        CheckDlgButton(hwnd, i, BST_CHECKED);
+                        if(IsDlgButtonChecked(hwnd, i)){
+                            void (*func)() = rdiobtnfuncs[j];
                             func();
                         }
                     }

@@ -1,37 +1,42 @@
+args=-Wno-int-to-pointer-cast
+
 compdll: linkobjs
 	gcc -s -shared cache\swapi.o -o swapi.dll -lcomdlg32 -lgdi32 -lcomctl32
 
-linkobjs: window.o gnrlhwndfuncs.o menus.o msgbox.o filepopup.o button.o image.o textfield.o text.o checkbox.o
-	ld -relocatable cache\window.o cache\gnrlhwndfuncs.o cache\menus.o cache\msgbox.o cache\filepopup.o cache\button.o cache\image.o cache\textfield.o cache\text.o cache\checkbox.o -o cache\swapi.o
+linkobjs: window.o gnrlhwndfuncs.o menus.o msgbox.o filepopup.o button.o image.o textfield.o text.o checkbox.o radiobutton.o
+	ld -relocatable cache\window.o cache\gnrlhwndfuncs.o cache\menus.o cache\msgbox.o cache\filepopup.o cache\button.o cache\image.o cache\textfield.o cache\text.o cache\checkbox.o cache\radiobutton.o -o cache\swapi.o
 
 all: 
 
 window.o:
-	gcc -I. -c src\Windows\window.c -o cache\window.o
+	gcc -I. -c src\Windows\window.c -o cache\window.o $(args)
 
 gnrlhwndfuncs.o:
-	gcc -I. -c src\gnrlhwndfuncs.c -o cache\gnrlhwndfuncs.o
+	gcc -I. -c src\gnrlhwndfuncs.c -o cache\gnrlhwndfuncs.o $(args)
 
 menus.o:
-	gcc -I. -c src\Elements\menus.c -o cache\menus.o
+	gcc -I. -c src\Elements\menus.c -o cache\menus.o $(args)
 
 msgbox.o:
-	gcc -I. -c src\Windows\msgbox.c -o cache\msgbox.o
+	gcc -I. -c src\Windows\msgbox.c -o cache\msgbox.o $(args)
 
 filepopup.o:
-	gcc -I. -c src\Windows\filepopup.c -o cache\filepopup.o
+	gcc -I. -c src\Windows\filepopup.c -o cache\filepopup.o $(args)
 	
 button.o:
-	gcc -I. -c src\Elements\button.c -o cache\button.o
+	gcc -I. -c src\Elements\button.c -o cache\button.o $(args)
 
 image.o:
-	gcc -I. -c src\Elements\image.c -o cache\image.o
+	gcc -I. -c src\Elements\image.c -o cache\image.o $(args)
 
 textfield.o:
-	gcc -I. -c src\Elements\textfield.c -o cache\textfield.o
+	gcc -I. -c src\Elements\textfield.c -o cache\textfield.o $(args)
 	
 text.o:
-	gcc -I. -c src\Elements\text.c -o cache\text.o
+	gcc -I. -c src\Elements\text.c -o cache\text.o $(args)
 
 checkbox.o:
-	gcc -I. -c src\Elements\checkbox.c -o cache\checkbox.o -Wno-int-to-pointer-cast
+	gcc -I. -c src\Elements\checkbox.c -o cache\checkbox.o $(args)
+
+radiobutton.o:
+	gcc -I. -c src\Elements\radiobutton.c -o cache\radiobutton.o $(args)

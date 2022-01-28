@@ -16,8 +16,12 @@ HWND swapi_createwindow();
 void swapi_showwindow();
 
 //GENERALHWNDFUNCS
+extern int hwndelemcount;
+extern int hwndevntcount;
+
 void swapi_destroyhwnd(HWND hwnd);
 void swapi_enablehwnd(HWND hwnd, BOOL enable);
+void swapi_checkhwnd(HWND winhwnd, int hwndvalue, int check);
 
 //BUTTON
 extern HWND btnhwnd[];
@@ -51,7 +55,7 @@ extern void *submnoptsfuncs[];
 void swapi_initmenu();
 void swapi_initsubmenu();
 int swapi_createsubmnoption(char *option);
-void swapi_createsubmnoptevent(int mnoptnum, void(*func)());
+void swapi_setsubmnoptevent(int mnoptnum, void(*func)());
 void swapi_createsubmenu(char *name);
 void swapi_showmenu(HWND winhwnd);
 void swapi_createsubmnseparator();
@@ -72,10 +76,19 @@ HWND swapi_showtext();
 extern HWND chkboxhwnd[];
 extern void *chkboxfuncs[];
 extern char *chkboxeventtype[];
-extern int chkboxelemcount;
 
 void swapi_createcheckbox(HWND winhwnd, LPCTSTR chkboxtext, int x, int y);
 void swapi_setchkboxevent(HWND hwnd, void(*func)(), char *eventtype);
 HWND swapi_showcheckbox();
+int swapi_getvalueofchkbox(HWND hwnd);
+
+//RADIOBUTTON
+extern void *rdiobtnfuncs[];
+extern HWND rdiobtnhwnd[];
+
+void swapi_createradiobutton(HWND winhwnd, LPCTSTR rdiobtntext, int x, int y);
+void swapi_setrdiobtnevent(HWND hwnd, void(*func)());
+HWND swapi_showradiobutton();
+int swapi_getvalueofrdiobtn(HWND hwnd);
 
 #endif

@@ -22,22 +22,21 @@ void swapi_createbutton(HWND winhwnd, LPCTSTR btntext, int x, int y, int width, 
     btnprots.height = height;
 }
 
-int btnevntcount = 0;
-
 HWND btnhwnd[1000000];
 void *btnfuncs[1000000];
 char *btneventtype[1000000];
 
 void swapi_setbtnevent(HWND hwnd, void(*func)(), char *eventtype){
-    btnhwnd[btnevntcount] = hwnd;
-    btnfuncs[btnevntcount] = func;
-    btneventtype[btnevntcount] = (char *) malloc(sizeof(char)*strlen(eventtype));
-    strcpy(btneventtype[btnevntcount], eventtype);
-    btnevntcount++;
+    btnhwnd[hwndevntcount] = hwnd;
+    btnfuncs[hwndevntcount] = func;
+    btneventtype[hwndevntcount] = (char *) malloc(sizeof(char)*strlen(eventtype));
+    strcpy(btneventtype[hwndevntcount], eventtype);
+    hwndevntcount++;
 }
 
 HWND swapi_showbutton(){
-    HWND hwnd = CreateWindow("BUTTON", btnprots.btntext, WS_VISIBLE | WS_CHILD, btnprots.x, btnprots.y, btnprots.width, btnprots.height, btnprots.winhwnd, (HMENU) 1, NULL, NULL);
+    hwndelemcount++;
+    HWND hwnd = CreateWindow("BUTTON", btnprots.btntext, WS_VISIBLE | WS_CHILD, btnprots.x, btnprots.y, btnprots.width, btnprots.height, btnprots.winhwnd, NULL, NULL, NULL);
     SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
     return hwnd;
 }
