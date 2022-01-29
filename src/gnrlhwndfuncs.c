@@ -17,3 +17,8 @@ void swapi_checkhwnd(HWND winhwnd, int hwndvalue, int check){
 void swapi_enablehwnd(HWND hwnd, BOOL enable){
     EnableWindow(hwnd, enable);
 }
+
+void swapi_showhidehwnd(HWND hwnd, BOOL show){
+    if(show == FALSE) ShowWindow(hwnd, SW_HIDE);
+    else if(show == TRUE) ShowWindow(hwnd, SW_SHOW);
+}

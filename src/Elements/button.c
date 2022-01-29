@@ -4,7 +4,7 @@
 
 struct btnproperties {
     HWND winhwnd;
-    LPCTSTR btntext;
+    LPCSTR btntext;
     int x;
     int y; 
     int width; 
@@ -13,7 +13,7 @@ struct btnproperties {
 
 struct btnproperties btnprots;
 
-void swapi_createbutton(HWND winhwnd, LPCTSTR btntext, int x, int y, int width, int height){
+void swapi_createbutton(HWND winhwnd, LPCSTR btntext, int x, int y, int width, int height){
     btnprots.winhwnd = winhwnd;
     btnprots.btntext = btntext;
     btnprots.x = x;

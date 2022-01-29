@@ -6,7 +6,7 @@ OPENFILENAME ofn;
 
 char *filename;
 
-void swapi_createfilepopup(HWND winhwnd, int fnamelength, LPCTSTR filefilter){
+void swapi_createfilepopup(HWND winhwnd, int fnamelength, LPCSTR filefilter){
     filename = (char *) malloc(sizeof(char)*fnamelength);
     ZeroMemory(&ofn, sizeof(OPENFILENAME));
     

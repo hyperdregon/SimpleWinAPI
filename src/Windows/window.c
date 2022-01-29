@@ -29,29 +29,6 @@ struct wineventfuncs {
     void (*funccp10)();
     void (*funccp11)();
     void (*funccp12)();
-    void (*funccp13)();
-    void (*funccp14)();
-    void (*funccp15)();
-    void (*funccp16)();
-    void (*funccp17)();
-    void (*funccp18)();
-    void (*funccp19)();
-    void (*funccp20)();
-    void (*funccp21)();
-    void (*funccp22)();
-    void (*funccp23)();
-    void (*funccp24)();
-    void (*funccp25)();
-    void (*funccp26)();
-    void (*funccp27)();
-    void (*funccp28)();
-    void (*funccp29)();
-    void (*funccp30)();
-    void (*funccp31)();
-    void (*funccp32)();
-    void (*funccp33)();
-    void (*funccp34)();
-    void (*funccp35)();
 };
 
 int closewindow = 0;
@@ -73,41 +50,16 @@ struct wineventfuncs eventfuncs;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     if(windoweventcp != NULL && strcmp(windoweventcp, "") != 0){
-        if(msg == WM_NULL && strstr(windoweventcp, "null")) eventfuncs.funccp1();
-        if(msg == WM_CREATE && strstr(windoweventcp, "create")) eventfuncs.funccp2();
-        if(msg == WM_DESTROY && strstr(windoweventcp, "destroy")) eventfuncs.funccp3();
-        if(msg == WM_MOVE && strstr(windoweventcp, "move")) eventfuncs.funccp4();
-        if(msg == WM_SIZE && strstr(windoweventcp, "size")) eventfuncs.funccp5();
-        if(msg == WM_ACTIVATE && strstr(windoweventcp, "activate")) eventfuncs.funccp6();
-        if(msg == WM_SETFOCUS && strstr(windoweventcp, "setfocus")) eventfuncs.funccp7();
-        if(msg == WM_KILLFOCUS && strstr(windoweventcp, "killfocus")) eventfuncs.funccp8();
-        if(msg == WM_ENABLE && strstr(windoweventcp, "enable")) eventfuncs.funccp9();
-        if(msg == WM_SETREDRAW && strstr(windoweventcp, "setredraw")) eventfuncs.funccp10();
-        if(msg == WM_SETTEXT && strstr(windoweventcp, "settext")) eventfuncs.funccp11();
-        if(msg == WM_GETTEXT && strstr(windoweventcp, "gettext")) eventfuncs.funccp12();
-        if(msg == WM_GETTEXTLENGTH && strstr(windoweventcp, "gettextlength")) eventfuncs.funccp13();
-        if(msg == WM_PAINT && strstr(windoweventcp, "paint")) eventfuncs.funccp14();
-        if(msg == WM_CLOSE && strstr(windoweventcp, "close")) eventfuncs.funccp15();
-        if(msg == WM_QUERYENDSESSION && strstr(windoweventcp, "queryendsession")) eventfuncs.funccp16();
-        if(msg == WM_QUERYOPEN && strstr(windoweventcp, "queryopen")) eventfuncs.funccp17();
-        if(msg == WM_ENDSESSION && strstr(windoweventcp, "endsession")) eventfuncs.funccp18();
-        if(msg == WM_QUIT && strstr(windoweventcp, "quit")) eventfuncs.funccp19();
-        if(msg == WM_ERASEBKGND && strstr(windoweventcp, "erasebkgnd")) eventfuncs.funccp20();
-        if(msg == WM_SYSCOLORCHANGE && strstr(windoweventcp, "syscolorchange")) eventfuncs.funccp21();
-        if(msg == WM_SHOWWINDOW && strstr(windoweventcp, "showwindow")) eventfuncs.funccp22();
-        if(msg == WM_WININICHANGE && strstr(windoweventcp, "wininitchange")) eventfuncs.funccp23();
-        if(msg == WM_SETTINGCHANGE && strstr(windoweventcp, "settingchange")) eventfuncs.funccp24();
-        if(msg == WM_DEVMODECHANGE && strstr(windoweventcp, "devmodechange")) eventfuncs.funccp25();
-        if(msg == WM_ACTIVATEAPP && strstr(windoweventcp, "activateapp")) eventfuncs.funccp26();
-        if(msg == WM_FONTCHANGE && strstr(windoweventcp, "fontchange")) eventfuncs.funccp27();
-        if(msg == WM_TIMECHANGE && strstr(windoweventcp, "timechange")) eventfuncs.funccp28();
-        if(msg == WM_CANCELMODE && strstr(windoweventcp, "cancelmode")) eventfuncs.funccp29();
-        if(msg == WM_SETCURSOR && strstr(windoweventcp, "setcursor")) eventfuncs.funccp30();
-        if(msg == WM_MOUSEACTIVATE && strstr(windoweventcp, "mouseactivate")) eventfuncs.funccp31();
-        if(msg == WM_CHILDACTIVATE && strstr(windoweventcp, "childactivate")) eventfuncs.funccp32();
-        if(msg == WM_QUEUESYNC && strstr(windoweventcp, "queuesync")) eventfuncs.funccp33();
-        if(msg == WM_GETMINMAXINFO && strstr(windoweventcp, "getminmaxinfo")) eventfuncs.funccp34();
-        if(msg == WM_SETFONT && strstr(windoweventcp, "setfont")) eventfuncs.funccp35();
+        if(msg == WM_CREATE && strstr(windoweventcp, "create")) eventfuncs.funccp1();
+        if(msg == WM_MOVE && strstr(windoweventcp, "move")) eventfuncs.funccp2();
+        if(msg == WM_SIZE && strstr(windoweventcp, "size")) eventfuncs.funccp3();
+        if(msg == WM_ACTIVATE && strstr(windoweventcp, "activate")) eventfuncs.funccp4();
+        if(msg == WM_SETFOCUS && strstr(windoweventcp, "setfocus")) eventfuncs.funccp5();
+        if(msg == WM_KILLFOCUS && strstr(windoweventcp, "killfocus")) eventfuncs.funccp6();
+        if(msg == WM_ENABLE && strstr(windoweventcp, "enable")) eventfuncs.funccp7();
+        if(msg == WM_CLOSE && strstr(windoweventcp, "close")) eventfuncs.funccp8();
+        if(msg == WM_QUIT && strstr(windoweventcp, "quit")) eventfuncs.funccp9();
+        if(msg == WM_SHOWWINDOW && strstr(windoweventcp, "showwindow")) eventfuncs.funccp10();
     }
     switch (msg)
     {
@@ -238,6 +190,23 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
                     }
                 }
             } 
+            for(int i = 2, j = 0; i <= hwndelemcount; i++, j++){
+                if(cmbboxhwnd[j] != NULL){
+                    if(HIWORD(wParam) == CBN_SELCHANGE)
+                    {
+                        if(LOWORD(wParam) == i)
+                        {
+                            int index = SendMessage((HWND) lParam, CB_GETCURSEL, (WPARAM) NULL, (LPARAM) NULL);
+                            char *buf = (char *) malloc(sizeof(char)*1000000);
+                            SendMessage((HWND) lParam, (UINT) CB_GETLBTEXT, (WPARAM) index, (LPARAM) buf);
+                            void (*func)() = cmbboxfuncs[j];
+                            func(buf);
+                            free(buf);
+                        }
+                        break;
+                    }
+                }
+            } 
             break;
     }
     return DefWindowProcW(hwnd, msg, wParam, lParam);
@@ -252,41 +221,16 @@ void swapi_setwindowevent(char *windowevent, void (*func)()){
         strcat(windoweventcp, " ");
         strcat(windoweventcp, windowevent);
     }
-    if(strstr(windoweventcp, "null")) eventfuncs.funccp1 = func;
-    else if(strstr(windoweventcp, "create")) eventfuncs.funccp2 = func;
-    else if(strstr(windoweventcp, "destroy")) eventfuncs.funccp3 = func;
-    else if(strstr(windoweventcp, "move")) eventfuncs.funccp4 = func;
-    else if(strstr(windoweventcp, "size")) eventfuncs.funccp5 = func;
-    else if(strstr(windoweventcp, "activate")) eventfuncs.funccp6 = func;
-    else if(strstr(windoweventcp, "setfocus")) eventfuncs.funccp7 = func;
-    else if(strstr(windoweventcp, "killfocus")) eventfuncs.funccp8 = func;
-    else if(strstr(windoweventcp, "enable")) eventfuncs.funccp9 = func;
-    else if(strstr(windoweventcp, "setredraw")) eventfuncs.funccp10 = func;
-    else if(strstr(windoweventcp, "settext")) eventfuncs.funccp11 = func;
-    else if(strstr(windoweventcp, "gettext")) eventfuncs.funccp12 = func;
-    else if(strstr(windoweventcp, "gettextlength")) eventfuncs.funccp13 = func;
-    else if(strstr(windoweventcp, "paint")) eventfuncs.funccp14 = func;
-    else if(strstr(windoweventcp, "close")) eventfuncs.funccp15 = func;
-    else if(strstr(windoweventcp, "queryendsession")) eventfuncs.funccp16 = func;
-    else if(strstr(windoweventcp, "queryopen")) eventfuncs.funccp17 = func;
-    else if(strstr(windoweventcp, "endsession")) eventfuncs.funccp18 = func;
-    else if(strstr(windoweventcp, "quit")) eventfuncs.funccp19 = func;
-    else if(strstr(windoweventcp, "erasebkgnd")) eventfuncs.funccp20 = func;
-    else if(strstr(windoweventcp, "syscolorchange")) eventfuncs.funccp21 = func;
-    else if(strstr(windoweventcp, "showwindow")) eventfuncs.funccp22 = func;
-    else if(strstr(windoweventcp, "wininitchange")) eventfuncs.funccp23 = func;
-    else if(strstr(windoweventcp, "settingchange")) eventfuncs.funccp24 = func;
-    else if(strstr(windoweventcp, "devmodechange")) eventfuncs.funccp25 = func;
-    else if(strstr(windoweventcp, "activateapp")) eventfuncs.funccp26 = func;
-    else if(strstr(windoweventcp, "fontchange")) eventfuncs.funccp27 = func;
-    else if(strstr(windoweventcp, "timechange")) eventfuncs.funccp28 = func;
-    else if(strstr(windoweventcp, "cancelmode")) eventfuncs.funccp29 = func;
-    else if(strstr(windoweventcp, "setcursor")) eventfuncs.funccp30 = func;
-    else if(strstr(windoweventcp, "mouseactivate")) eventfuncs.funccp31 = func;
-    else if(strstr(windoweventcp, "childactivate")) eventfuncs.funccp32 = func;
-    else if(strstr(windoweventcp, "queuesync")) eventfuncs.funccp33 = func;
-    else if(strstr(windoweventcp, "getminmaxinfo")) eventfuncs.funccp34 = func;
-    else if(strstr(windoweventcp, "setfont")) eventfuncs.funccp35 = func;
+    if(strstr(windoweventcp, "create")) eventfuncs.funccp1 = func;
+    else if(strstr(windoweventcp, "move")) eventfuncs.funccp2 = func;
+    else if(strstr(windoweventcp, "size")) eventfuncs.funccp3 = func;
+    else if(strstr(windoweventcp, "activate")) eventfuncs.funccp4 = func;
+    else if(strstr(windoweventcp, "setfocus")) eventfuncs.funccp5 = func;
+    else if(strstr(windoweventcp, "killfocus")) eventfuncs.funccp6 = func;
+    else if(strstr(windoweventcp, "enable")) eventfuncs.funccp7 = func;
+    else if(strstr(windoweventcp, "close")) eventfuncs.funccp8 = func;
+    else if(strstr(windoweventcp, "quit")) eventfuncs.funccp9 = func;
+    else if(strstr(windoweventcp, "showwindow")) eventfuncs.funccp10 = func;
 }
 
 MSG  msg;
@@ -321,6 +265,7 @@ void swapi_initwindow(LPCWSTR windowname, int positionx, int positiony, int widt
 HWND swapi_createwindow(){
     RegisterClassW(&wc);
     hwnd = CreateWindowW(wc.lpszClassName, window.windowname, style, window.positionx, window.positiony, window.width, window.height, NULL, NULL, hInstancecp, NULL);
+    SetWindowTheme(hwnd, L"DarkMode_Explorer", NULL);
     HFONT hFont = CreateFontW(20, 0, 0, 0, FW_DONTCARE, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, L"Arial");
     SendMessage(hwnd, WM_SETFONT, (WPARAM) hFont, TRUE);
     GetMessage(&msg, NULL, 0, 0);
@@ -344,6 +289,10 @@ void swapi_showwindow(){
 void swapi_changestyle(DWORD newstyle){
     style = newstyle;
     changedstyle = 1;
+}
+
+void swapi_changewindowtitle(HWND hwnd, LPCWSTR name){
+    SetWindowTextW(hwnd, name);
 }
 
 void swapi_changecursor(char *name){

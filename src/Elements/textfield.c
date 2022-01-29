@@ -4,7 +4,7 @@
 
 struct txtfldproperties {
     HWND winhwnd;
-    LPCTSTR txtfldtext;
+    LPCSTR txtfldtext;
     int x;
     int y; 
     int width; 
@@ -13,7 +13,7 @@ struct txtfldproperties {
 };
 struct txtfldproperties txtfldprots;
 
-void swapi_createtextfield(HWND winhwnd, LPCTSTR txtfldtext, int x, int y, int width, int height, int multiline){
+void swapi_createtextfield(HWND winhwnd, LPCSTR txtfldtext, int x, int y, int width, int height, int multiline){
     txtfldprots.winhwnd = winhwnd;
     txtfldprots.txtfldtext = txtfldtext;
     txtfldprots.x = x;

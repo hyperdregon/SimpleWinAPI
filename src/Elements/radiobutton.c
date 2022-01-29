@@ -4,14 +4,14 @@
 
 struct rdiobtnproperties {
     HWND winhwnd;
-    LPCTSTR rdiobtntext;
+    LPCSTR rdiobtntext;
     int x;
     int y; 
 };
 
 struct rdiobtnproperties rdiobtnprots;
 
-void swapi_createradiobutton(HWND winhwnd, LPCTSTR rdiobtntext, int x, int y){
+void swapi_createradiobutton(HWND winhwnd, LPCSTR rdiobtntext, int x, int y){
     rdiobtnprots.winhwnd = winhwnd;
     rdiobtnprots.rdiobtntext = rdiobtntext;
     rdiobtnprots.x = x;

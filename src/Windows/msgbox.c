@@ -4,14 +4,14 @@
 
 struct msgboxprops {
     HWND winhwnd; 
-    LPCTSTR msgboxtext;
-    LPCTSTR msgboxname;
+    LPCSTR msgboxtext;
+    LPCSTR msgboxname;
     UINT msgboxtype;
 };
 
 struct msgboxprops msgboxprops;
 
-void swapi_createmsgbox(HWND winhwnd, LPCTSTR msgboxtext, LPCTSTR msgboxname, UINT msgboxtype){
+void swapi_createmsgbox(HWND winhwnd, LPCSTR msgboxtext, LPCSTR msgboxname, UINT msgboxtype){
     msgboxprops.winhwnd = winhwnd;
     msgboxprops.msgboxtext = msgboxtext;
     msgboxprops.msgboxname = msgboxname;

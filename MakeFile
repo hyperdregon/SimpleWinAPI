@@ -1,10 +1,10 @@
 args=-Wno-int-to-pointer-cast
 
 compdll: linkobjs
-	gcc -s -shared cache\swapi.o -o swapi.dll -lcomdlg32 -lgdi32 -lcomctl32
+	gcc -s -shared cache\swapi.o -o swapi.dll -lcomdlg32 -lgdi32 -lcomctl32 -luxtheme
 
-linkobjs: window.o gnrlhwndfuncs.o menus.o msgbox.o filepopup.o button.o image.o textfield.o text.o checkbox.o radiobutton.o
-	ld -relocatable cache\window.o cache\gnrlhwndfuncs.o cache\menus.o cache\msgbox.o cache\filepopup.o cache\button.o cache\image.o cache\textfield.o cache\text.o cache\checkbox.o cache\radiobutton.o -o cache\swapi.o
+linkobjs: window.o gnrlhwndfuncs.o menus.o msgbox.o filepopup.o button.o image.o textfield.o text.o checkbox.o radiobutton.o combobox.o
+	ld -relocatable cache\window.o cache\gnrlhwndfuncs.o cache\menus.o cache\msgbox.o cache\filepopup.o cache\button.o cache\image.o cache\textfield.o cache\text.o cache\checkbox.o cache\radiobutton.o cache\combobox.o -o cache\swapi.o
 
 all: 
 
@@ -40,3 +40,6 @@ checkbox.o:
 
 radiobutton.o:
 	gcc -I. -c src\Elements\radiobutton.c -o cache\radiobutton.o $(args)
+
+combobox.o:
+	gcc -I. -c src\Elements\combobox.c -o cache\combobox.o $(args)

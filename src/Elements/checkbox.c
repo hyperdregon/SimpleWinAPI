@@ -4,14 +4,14 @@
 
 struct chkboxproperties {
     HWND winhwnd;
-    LPCTSTR chkboxtext;
+    LPCSTR chkboxtext;
     int x;
     int y; 
 };
 
 struct chkboxproperties chkboxprots;
 
-void swapi_createcheckbox(HWND winhwnd, LPCTSTR chkboxtext, int x, int y){
+void swapi_createcheckbox(HWND winhwnd, LPCSTR chkboxtext, int x, int y){
     chkboxprots.winhwnd = winhwnd;
     chkboxprots.chkboxtext = chkboxtext;
     chkboxprots.x = x;
