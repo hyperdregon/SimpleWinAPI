@@ -9,9 +9,9 @@ void swapi_destroyhwnd(HWND hwnd){
     DestroyWindow(hwnd);
 }
 
-void swapi_checkhwnd(HWND winhwnd, int hwndvalue, int check){
-    if(check == 0) CheckDlgButton(winhwnd, hwndvalue, BST_UNCHECKED);
-    else if(check == 1) CheckDlgButton(winhwnd, hwndvalue, BST_CHECKED);
+void swapi_checkhwnd(HWND winhwnd, int hwndvalue, BOOL check){
+    if(check == FALSE) CheckDlgButton(winhwnd, hwndvalue, BST_UNCHECKED);
+    else if(check == TRUE) CheckDlgButton(winhwnd, hwndvalue, BST_CHECKED);
 }
 
 void swapi_enablehwnd(HWND hwnd, BOOL enable){

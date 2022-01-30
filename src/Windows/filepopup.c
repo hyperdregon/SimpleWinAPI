@@ -19,11 +19,11 @@ void swapi_createfilepopup(HWND winhwnd, int fnamelength, LPCSTR filefilter){
     ofn.nFilterIndex = 1;
 }
 
-char *swapi_showfilepopup(int savefile){
-    if(savefile == 0){
+char *swapi_showfilepopup(BOOL savefile){
+    if(savefile == FALSE){
         GetOpenFileName(&ofn);
     }
-    else {
+    else if(savefile == TRUE) {
         GetSaveFileName(&ofn);
     }
     return filename;

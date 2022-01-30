@@ -23,7 +23,7 @@ extern int hwndevntcount;
 
 void swapi_destroyhwnd(HWND hwnd);
 void swapi_enablehwnd(HWND hwnd, BOOL enable);
-void swapi_checkhwnd(HWND winhwnd, int hwndvalue, int check);
+void swapi_checkhwnd(HWND winhwnd, int hwndvalue, BOOL check);
 void swapi_showhidehwnd(HWND hwnd, BOOL show);
 
 //BUTTON
@@ -46,7 +46,7 @@ HWND swapi_showimage();
 extern HWND txtfldhwnd[];
 extern void *txtfldfuncs[];
 
-void swapi_createtextfield(HWND winhwnd, LPCSTR txtfldtext, int x, int y, int width, int height, int multiline);
+void swapi_createtextfield(HWND winhwnd, LPCSTR txtfldtext, int x, int y, int width, int height, BOOL multiline);
 void swapi_settxtfldevent(HWND hwnd, void(*func)());
 HWND swapi_showtextfield();
 LPTSTR swapi_gettxtfldtext(HWND hwnd, int txtsizelimit);
@@ -69,7 +69,7 @@ int swapi_showmsgbox();
 
 //OPENSAVEFILEWND
 void swapi_createfilepopup(HWND winhwnd, int fnamelength, LPCSTR filefilter);
-char *swapi_showfilepopup(int savefile);
+char *swapi_showfilepopup(BOOL savefile);
 
 //TEXT
 void swapi_createtext(HWND winhwnd, LPCSTR text, int x, int y);
