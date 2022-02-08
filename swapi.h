@@ -14,7 +14,6 @@ void swapi_changecursor(char *name);
 void swapi_changeicon(char *name);
 void swapi_setwindowevent(char *windowevent, void (*func)());
 HWND swapi_createwindow();
-void swapi_changewindowtitle(HWND hwnd, LPCWSTR name);
 void swapi_showwindow();
 
 //GENERALHWNDFUNCS
@@ -25,6 +24,8 @@ void swapi_destroyhwnd(HWND hwnd);
 void swapi_enablehwnd(HWND hwnd, BOOL enable);
 void swapi_checkhwnd(HWND winhwnd, int hwndvalue, BOOL check);
 void swapi_showhidehwnd(HWND hwnd, BOOL show);
+void swapi_sethwndtext(HWND hwnd, LPCSTR text);
+LPTSTR swapi_gethwndtext(HWND hwnd);
 
 //BUTTON
 extern HWND btnhwnd[];
@@ -49,8 +50,6 @@ extern void *txtfldfuncs[];
 void swapi_createtextfield(HWND winhwnd, LPCSTR txtfldtext, int x, int y, int width, int height, BOOL multiline);
 void swapi_settxtfldevent(HWND hwnd, void(*func)());
 HWND swapi_showtextfield();
-LPTSTR swapi_gettxtfldtext(HWND hwnd, int txtsizelimit);
-void swapi_settxtfldtext(HWND hwnd, char *text);
 
 //MENUS
 extern void *submnoptsfuncs[];

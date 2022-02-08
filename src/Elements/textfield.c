@@ -32,16 +32,6 @@ void swapi_settxtfldevent(HWND hwnd, void(*func)()){
     hwndevntcount++;
 }
 
-LPTSTR swapi_gettxtfldtext(HWND hwnd, int txtsizelimit){
-    LPTSTR text = (LPTSTR) malloc(sizeof(LPTSTR)*txtsizelimit);
-    GetWindowText(hwnd, text, txtsizelimit);
-    return text;
-}
-
-void swapi_settxtfldtext(HWND hwnd, char *text){
-    SetWindowText(hwnd, text);
-}
-
 HWND swapi_showtextfield(){
     HWND hwnd;
     if(txtfldprots.multiline == FALSE)

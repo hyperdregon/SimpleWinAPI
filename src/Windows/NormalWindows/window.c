@@ -168,10 +168,6 @@ void swapi_changestyle(DWORD newstyle){
     changedstyle = 1;
 }
 
-void swapi_changewindowtitle(HWND hwnd, LPCWSTR name){
-    SetWindowTextW(hwnd, name);
-}
-
 void swapi_changecursor(char *name){
     if(strcmp(name, "appstarting") == 0) wc.hCursor = LoadCursor(NULL, IDC_APPSTARTING);
     else if(strcmp(name, "arrow") == 0) wc.hCursor = LoadCursor(NULL, IDC_ARROW);
