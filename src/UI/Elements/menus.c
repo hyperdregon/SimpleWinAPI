@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <swapi.h>
+#include "swapi.h"
+#include "privswapi.h"
 
 HMENU hmenu;
 HMENU hsubmenu;

@@ -1,48 +1,61 @@
-args=-Wno-int-to-pointer-cast -I./include -I./include/Windows/NormalWindows
+args=-Wno-int-to-pointer-cast -I./include
+files=window.o gnrlhwndfuncs.o menus.o msgbox.o filepopup.o button.o image.o textfield.o text.o checkbox.o radiobutton.o combobox.o wndelementevnts.o files.o paths.o main.o
+
+rmobjs: compdll
+	powershell -command rm *.o
 
 compdll: linkobjs
-	gcc -s -shared cache\swapi.o -o swapi.dll -lcomdlg32 -lgdi32 -lcomctl32 -luxtheme
+	gcc -s -shared swapi.o -o swapi.dll -lcomdlg32 -lgdi32 -lcomctl32 -luxtheme
 
-linkobjs: window.o gnrlhwndfuncs.o menus.o msgbox.o filepopup.o button.o image.o textfield.o text.o checkbox.o radiobutton.o combobox.o wndelementevnts.o
-	ld -relocatable cache\window.o cache\gnrlhwndfuncs.o cache\menus.o cache\msgbox.o cache\filepopup.o cache\button.o cache\image.o cache\textfield.o cache\text.o cache\checkbox.o cache\radiobutton.o cache\combobox.o cache\wndelementevnts.o -o cache\swapi.o
+linkobjs: $(files)
+	ld -relocatable $(files) -o swapi.o
 
 all: 
 
+main.o:
+	gcc -I. -c src\main.c -o main.o $(args)
+
 window.o:
-	gcc -I. -c src\Windows\NormalWindows\window.c -o cache\window.o $(args)
+	gcc -I. -c src\UI\Windows\NormalWindows\window.c -o window.o $(args)
 
 gnrlhwndfuncs.o:
-	gcc -I. -c src\gnrlhwndfuncs.c -o cache\gnrlhwndfuncs.o $(args)
+	gcc -I. -c src\UI\gnrlhwndfuncs.c -o gnrlhwndfuncs.o $(args)
 
 menus.o:
-	gcc -I. -c src\Elements\menus.c -o cache\menus.o $(args)
+	gcc -I. -c src\UI\Elements\menus.c -o menus.o $(args)
 
 msgbox.o:
-	gcc -I. -c src\Windows\msgbox.c -o cache\msgbox.o $(args)
+	gcc -I. -c src\UI\Windows\msgbox.c -o msgbox.o $(args)
 
 filepopup.o:
-	gcc -I. -c src\Windows\filepopup.c -o cache\filepopup.o $(args)
+	gcc -I. -c src\UI\Windows\filepopup.c -o filepopup.o $(args)
 	
 button.o:
-	gcc -I. -c src\Elements\button.c -o cache\button.o $(args)
+	gcc -I. -c src\UI\Elements\button.c -o button.o $(args)
 
 image.o:
-	gcc -I. -c src\Elements\image.c -o cache\image.o $(args)
+	gcc -I. -c src\UI\Elements\image.c -o image.o $(args)
 
 textfield.o:
-	gcc -I. -c src\Elements\textfield.c -o cache\textfield.o $(args)
+	gcc -I. -c src\UI\Elements\textfield.c -o textfield.o $(args)
 	
 text.o:
-	gcc -I. -c src\Elements\text.c -o cache\text.o $(args)
+	gcc -I. -c src\UI\Elements\text.c -o text.o $(args)
 
 checkbox.o:
-	gcc -I. -c src\Elements\checkbox.c -o cache\checkbox.o $(args)
+	gcc -I. -c src\UI\Elements\checkbox.c -o checkbox.o $(args)
 
 radiobutton.o:
-	gcc -I. -c src\Elements\radiobutton.c -o cache\radiobutton.o $(args)
+	gcc -I. -c src\UI\Elements\radiobutton.c -o radiobutton.o $(args)
 
 combobox.o:
-	gcc -I. -c src\Elements\combobox.c -o cache\combobox.o $(args)
+	gcc -I. -c src\UI\Elements\combobox.c -o combobox.o $(args)
 
 wndelementevnts.o:
-	gcc -I. -c src\Windows\NormalWindows\wndelementevnts.c -o cache\wndelementevnts.o $(args)
+	gcc -I. -c src\UI\Windows\NormalWindows\wndelementevnts.c -o wndelementevnts.o $(args)
+
+files.o:
+	gcc -I. -c src\Other\files.c -o files.o $(args)
+
+paths.o:
+	gcc -I. -c src\Other\paths.c -o paths.o $(args)

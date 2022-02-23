@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <swapi.h>
+#include "swapi.h"
+#include "privswapi.h"
 
 struct imgproperties {
     HWND winhwnd;
@@ -23,7 +24,7 @@ void swapi_createimage(HWND winhwnd, int x, int y, int width, int height, LPCWST
 
 HWND swapi_showimage(){
     HBITMAP bitmap = (HBITMAP) LoadImageW(NULL,imgprots.path,IMAGE_BITMAP,0,0,LR_LOADFROMFILE);
-    HWND hwnd = CreateWindowW(L"Static", NULL, WS_VISIBLE | WS_CHILD | SS_BITMAP, imgprots.x, imgprots.y, imgprots.width, imgprots.height, imgprots.winhwnd, NULL, NULL, NULL);
+    HWND hwnd = CreateWindowW(L"Static", NULL, WS_VISIBLE | WS_CHILD | SS_BITMAP, imgprots.x, imgprots.y, imgprots.width, imgprots.height, imgprots.winhwnd, NULL, hInstancecp, NULL);
     SendMessageW(hwnd, STM_SETIMAGE, IMAGE_BITMAP, (LPARAM) bitmap);
     return hwnd;
 }

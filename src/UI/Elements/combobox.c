@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <swapi.h>
+#include "swapi.h"
+#include "privswapi.h"
 
 struct cmbboxproperties {
     HWND winhwnd;
@@ -31,7 +32,7 @@ void swapi_setcmbboxevent(HWND hwnd, void(*func)()){
 
 HWND swapi_showcombobox(){
     hwndelemcount++;
-    HWND hwnd = CreateWindow("COMBOBOX", "combobox", WS_VISIBLE | WS_CHILD | CBS_DROPDOWN, cmbboxprots.x, cmbboxprots.y, cmbboxprots.width, cmbboxprots.height, cmbboxprots.winhwnd, (HMENU) hwndelemcount, NULL, NULL);
+    HWND hwnd = CreateWindow("COMBOBOX", "combobox", WS_VISIBLE | WS_CHILD | CBS_DROPDOWN, cmbboxprots.x, cmbboxprots.y, cmbboxprots.width, cmbboxprots.height, cmbboxprots.winhwnd, (HMENU) hwndelemcount, hInstancecp, NULL);
     SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
     return hwnd;
 }

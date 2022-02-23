@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <swapi.h>
+#include "swapi.h"
+#include "privswapi.h"
 
 int hwndelemcount = 1;
 int hwndevntcount = 0;

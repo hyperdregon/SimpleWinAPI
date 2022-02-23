@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <swapi.h>
+#include "swapi.h"
+#include "privswapi.h"
 
 struct rdiobtnproperties {
     HWND winhwnd;
@@ -35,7 +36,7 @@ HWND swapi_showradiobutton(){
         if(rdiobtnprots.rdiobtntext[i] == '\n') numofnewlines++;
     }
     numofnewlines++;
-    HWND hwnd = CreateWindow("BUTTON", rdiobtnprots.rdiobtntext, WS_VISIBLE | WS_CHILD | BS_RADIOBUTTON, rdiobtnprots.x, rdiobtnprots.y, numofchar*14, numofnewlines*20, rdiobtnprots.winhwnd, (HMENU) hwndelemcount, NULL, NULL);
+    HWND hwnd = CreateWindow("BUTTON", rdiobtnprots.rdiobtntext, WS_VISIBLE | WS_CHILD | BS_RADIOBUTTON, rdiobtnprots.x, rdiobtnprots.y, numofchar*14, numofnewlines*20, rdiobtnprots.winhwnd, (HMENU) hwndelemcount, hInstancecp, NULL);
     SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
     return hwnd;
 }

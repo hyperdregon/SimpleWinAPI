@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <swapi.h>
+#include "swapi.h"
+#include "privswapi.h"
 
 struct chkboxproperties {
     HWND winhwnd;
@@ -38,7 +39,7 @@ HWND swapi_showcheckbox(){
         if(chkboxprots.chkboxtext[i] == '\n') numofnewlines++;
     }
     numofnewlines++;
-    HWND hwnd = CreateWindow("BUTTON", chkboxprots.chkboxtext, WS_VISIBLE | WS_CHILD | BS_CHECKBOX, chkboxprots.x, chkboxprots.y, numofchar*10, numofnewlines*20, chkboxprots.winhwnd, (HMENU) hwndelemcount, NULL, NULL);
+    HWND hwnd = CreateWindow("BUTTON", chkboxprots.chkboxtext, WS_VISIBLE | WS_CHILD | BS_CHECKBOX, chkboxprots.x, chkboxprots.y, numofchar*10, numofnewlines*20, chkboxprots.winhwnd, (HMENU) hwndelemcount, hInstancecp, NULL);
     SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
     return hwnd;
 }

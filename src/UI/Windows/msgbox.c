@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <swapi.h>
+#include "swapi.h"
 
 struct msgboxprops {
     HWND winhwnd; 

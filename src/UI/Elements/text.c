@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <swapi.h>
+#include "swapi.h"
+#include "privswapi.h"
 
 struct textproperties {
     HDC hdc;
@@ -26,7 +27,7 @@ HWND swapi_showtext(){
         if(textprots.text[i] == '\n') numofnewlines++;
     }
     numofnewlines++;
-    HWND hwnd = CreateWindow("STATIC", textprots.text, WS_VISIBLE | WS_CHILD, textprots.x, textprots.y, numofchar*10, numofnewlines*20, textprots.winhwnd, NULL, NULL, NULL);
+    HWND hwnd = CreateWindow("STATIC", textprots.text, WS_VISIBLE | WS_CHILD, textprots.x, textprots.y, numofchar*10, numofnewlines*20, textprots.winhwnd, NULL, hInstancecp, NULL);
     SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
     return hwnd;
 }

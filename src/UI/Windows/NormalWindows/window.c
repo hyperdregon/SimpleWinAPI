@@ -1,21 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <swapi.h>
-#include <headers.h>
-
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){ return 0; }
-
-HINSTANCE hInstancecp;
-HINSTANCE hPrevInstancecp; 
-LPSTR lpCmdLinecp; 
-int nCmdShowcp;
-
-void swapi_init(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow){
-    hInstancecp = hInstance;
-    hPrevInstancecp = hPrevInstance;
-    lpCmdLinecp = lpCmdLine;
-    nCmdShowcp = nCmdShow;
-}
+#include "swapi.h"
+#include "privswapi.h"
 
 struct wineventfuncs {
     void (*funccp1)();
@@ -28,8 +14,6 @@ struct wineventfuncs {
     void (*funccp8)();
     void (*funccp9)();
     void (*funccp10)();
-    void (*funccp11)();
-    void (*funccp12)();
 };
 
 int closewindow = 0;
@@ -113,8 +97,6 @@ void swapi_setwindowevent(char *windowevent, void (*func)()){
 MSG  msg;
 HWND hwnd;
 WNDCLASSW wc;
-
-int changedstyle = 0;
 DWORD style;
 
 void swapi_initwindow(LPCWSTR windowname, int positionx, int positiony, int width, int height){
@@ -123,6 +105,7 @@ void swapi_initwindow(LPCWSTR windowname, int positionx, int positiony, int widt
     window.positiony = positiony;
     window.width = width;
     window.height = height;
+    style = WS_OVERLAPPEDWINDOW | WS_VISIBLE;
 
     wc.style = CS_HREDRAW | CS_VREDRAW;
     wc.cbClsExtra = 0;
@@ -133,10 +116,6 @@ void swapi_initwindow(LPCWSTR windowname, int positionx, int positiony, int widt
     wc.lpfnWndProc = WndProc;
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
     wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
-
-    if(changedstyle == 0){
-        style = WS_OVERLAPPEDWINDOW | WS_VISIBLE;
-    }
 }
 
 HWND swapi_createwindow(){
@@ -160,12 +139,10 @@ void swapi_showwindow(){
         TranslateMessage(&msg);
         DispatchMessage(&msg);
     }
-    changedstyle = 0;
 }
 
 void swapi_changestyle(DWORD newstyle){
     style = newstyle;
-    changedstyle = 1;
 }
 
 void swapi_changecursor(char *name){

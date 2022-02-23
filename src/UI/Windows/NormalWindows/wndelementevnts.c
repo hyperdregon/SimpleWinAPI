@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <swapi.h>
-#include <wndelementevnts.h>
+#include "swapi.h"
+#include "privswapi.h"
 
 void chkelemsevnts(LPARAM lParam, WPARAM wParam, HWND hwnd){
     for(int i = 0; i < 1000000; i++){

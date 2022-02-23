@@ -1,3 +1,0 @@
-Here it is the cache of the makefile (obj files)
-
-If you change something, and you want to build the library again, with your new code, you can use the makefile, and all the obj files will be stored here, for faster performance when the makefile runs again.
