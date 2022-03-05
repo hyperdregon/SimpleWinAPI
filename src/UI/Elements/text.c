@@ -21,13 +21,14 @@ void swapi_createtext(HWND winhwnd, LPCSTR text, int x, int y){
 }
 
 HWND swapi_showtext(){
+    hwndelemcount++;
     int numofchar = strlen(textprots.text);
     int numofnewlines = 0;
     for(int i = 0; textprots.text[i] != '\0'; i++){
         if(textprots.text[i] == '\n') numofnewlines++;
     }
     numofnewlines++;
-    HWND hwnd = CreateWindow("STATIC", textprots.text, WS_VISIBLE | WS_CHILD, textprots.x, textprots.y, numofchar*10, numofnewlines*20, textprots.winhwnd, NULL, hInstancecp, NULL);
+    HWND hwnd = CreateWindow("STATIC", textprots.text, WS_VISIBLE | WS_CHILD, textprots.x, textprots.y, numofchar*10, numofnewlines*20, textprots.winhwnd, (HMENU) hwndelemcount, hInstancecp, NULL);
     SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
     return hwnd;
 }

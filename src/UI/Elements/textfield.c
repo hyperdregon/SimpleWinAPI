@@ -34,11 +34,12 @@ void swapi_settxtfldevent(HWND hwnd, void(*func)()){
 }
 
 HWND swapi_showtextfield(){
+    hwndelemcount++;
     HWND hwnd;
     if(txtfldprots.multiline == FALSE)
-        hwnd = CreateWindow("EDIT", txtfldprots.txtfldtext, WS_VISIBLE | WS_CHILD, txtfldprots.x, txtfldprots.y, txtfldprots.width, txtfldprots.height, txtfldprots.winhwnd, NULL, hInstancecp, NULL);
+        hwnd = CreateWindow("EDIT", txtfldprots.txtfldtext, WS_VISIBLE | WS_CHILD, txtfldprots.x, txtfldprots.y, txtfldprots.width, txtfldprots.height, txtfldprots.winhwnd, (HMENU) hwndelemcount, hInstancecp, NULL);
     else if(txtfldprots.multiline == TRUE)
-        hwnd = CreateWindow("EDIT", txtfldprots.txtfldtext, WS_VISIBLE | WS_CHILD | ES_MULTILINE | WS_VSCROLL | WS_HSCROLL, txtfldprots.x, txtfldprots.y, txtfldprots.width, txtfldprots.height, txtfldprots.winhwnd, NULL, hInstancecp, NULL);
+        hwnd = CreateWindow("EDIT", txtfldprots.txtfldtext, WS_VISIBLE | WS_CHILD | ES_MULTILINE | WS_VSCROLL | WS_HSCROLL, txtfldprots.x, txtfldprots.y, txtfldprots.width, txtfldprots.height, txtfldprots.winhwnd, (HMENU) hwndelemcount, hInstancecp, NULL);
     SendMessage(hwnd, WM_SETFONT, (WPARAM)hfont, MAKELPARAM(TRUE, 0));
     return hwnd;
 }
