@@ -1,7 +1,5 @@
 # SimpleWinAPI
 
-(Before any backstory on why I did this, I have to relember that this is made for C only! It may work on C++, but it isn't and won't be tested)
-
 Well, I've recently started developing windows apps with gtk, but to actually use that on windows, you need to have a lot of folders and icons and themes, and it is a hassle to maintain a simple project...
 
 So, I've came to the conclusion that for doing what I wanted (creating an UI that would work on windows) I needed the Windows API (windows.h). It was and still is the best option. But, when I started diving into the subject, I noticed that it was too hard! I couldn't understand a single bit of what it was doing! And I thought to my self: "Well, if I'm having this difficulty, and I have some experience with C, a person without any experience won't understand anything!"
