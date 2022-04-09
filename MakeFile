@@ -5,7 +5,7 @@ rmobjs: compdll
 	powershell -command rm *.o
 
 compdll: linkobjs
-	gcc -s -shared swapi.o -o swapi.dll -lcomdlg32 -lgdi32 -lcomctl32 -luxtheme
+	gcc -s -shared swapi.o -o swapi.dll -lcomdlg32 -lgdi32 -lcomctl32 -luxtheme -lopengl32
 
 linkobjs: $(files)
 	ld -relocatable $(files) -o swapi.o

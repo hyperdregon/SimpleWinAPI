@@ -16,6 +16,7 @@ extern "C" {
     void swapi_changecursor(char *name);
     void swapi_changeicon(char *name);
     void swapi_setwindowevent(char *windowevent, void (*func)());
+    HWND swapi_createopenglwindow(void (*displayfunc)(), void (*resizefunc)(int w, int h), BYTE typeofwindow, DWORD flagsofwindow);
     HWND swapi_createwindow();
     void swapi_showwindow();
 

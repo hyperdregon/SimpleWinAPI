@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <GL/gl.h>
+#include <GL/glu.h>	
 #include "swapi.h"
 #include "privswapi.h"
 
@@ -16,6 +18,11 @@ struct wineventfuncs {
     void (*funccp10)();
 };
 
+struct openglwndprots {
+    void (*displayfunccp)();
+    void (*resizefunccp)();
+};
+
 int closewindow = 0;
 
 char *windoweventcp;
@@ -28,12 +35,17 @@ struct winproperties {
     int height;
 };
 
+BOOL isopenglwindow = FALSE;
+
 HFONT hfont;
 
 struct winproperties window;
 struct wineventfuncs eventfuncs;
+struct openglwndprots openglwndprots;
 
 LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
+    static PAINTSTRUCT ps;
+
     if(windoweventcp != NULL && strcmp(windoweventcp, "") != 0){
         if(msg == WM_CREATE && strstr(windoweventcp, "create")) eventfuncs.funccp1();
         if(msg == WM_MOVE && strstr(windoweventcp, "move")) eventfuncs.funccp2();
@@ -48,6 +60,21 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     }
     switch (msg)
     {
+        case WM_PAINT:
+            if(isopenglwindow == TRUE){
+                openglwndprots.displayfunccp();
+                BeginPaint(hwnd, &ps);
+	            EndPaint(hwnd, &ps);
+            }
+        case WM_SIZE:
+            if(isopenglwindow == TRUE){
+                RECT rect;
+                GetWindowRect(hwnd, &rect);
+                int w = rect.right - rect.left;
+                int h = rect.bottom - rect.top;
+                openglwndprots.resizefunccp(w, h);
+                PostMessage(hwnd, WM_PAINT, 0, 0);
+            }
         case WM_DESTROY:
             PostQuitMessage(0);
             break;
@@ -119,11 +146,44 @@ void swapi_initwindow(LPCWSTR windowname, int positionx, int positiony, int widt
 }
 
 HWND swapi_createwindow(){
+    isopenglwindow = FALSE;
     RegisterClassW(&wc);
     hwnd = CreateWindowW(wc.lpszClassName, window.windowname, style, window.positionx, window.positiony, window.width, window.height, NULL, NULL, hInstancecp, NULL);
-    SetWindowTheme(hwnd, L"DarkMode_Explorer", NULL);
     HFONT hFont = CreateFontW(20, 0, 0, 0, FW_DONTCARE, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, L"Arial");
     SendMessage(hwnd, WM_SETFONT, (WPARAM) hFont, TRUE);
+    GetMessage(&msg, NULL, 0, 0);
+    TranslateMessage(&msg);
+    DispatchMessage(&msg);
+    return hwnd;
+}
+
+HWND swapi_createopenglwindow(void (*displayfunc)(), void (*resizefunc)(int w, int h), BYTE typeofwindow, DWORD flagsofwindow){
+    openglwndprots.displayfunccp = displayfunc;
+    openglwndprots.resizefunccp = resizefunc;
+    int pf;
+    HDC hDC;
+    PIXELFORMATDESCRIPTOR pfd;
+    isopenglwindow = TRUE;
+    RegisterClassW(&wc);
+    hwnd = CreateWindowW(wc.lpszClassName, window.windowname, style, window.positionx, window.positiony, window.width, window.height, NULL, NULL, hInstancecp, NULL);
+    HFONT hFont = CreateFontW(20, 0, 0, 0, FW_DONTCARE, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, L"Arial");
+    SendMessage(hwnd, WM_SETFONT, (WPARAM) hFont, TRUE);
+    hDC = GetDC(hwnd);
+
+    memset(&pfd, 0, sizeof(pfd));
+    pfd.nSize        = sizeof(pfd);
+    pfd.nVersion     = 1;
+    pfd.dwFlags      = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | flagsofwindow;
+    pfd.iPixelType   = typeofwindow;
+    pfd.cColorBits   = 32;
+
+    pf = ChoosePixelFormat(hDC, &pfd);
+ 
+    SetPixelFormat(hDC, pf, &pfd);
+
+    DescribePixelFormat(hDC, pf, sizeof(PIXELFORMATDESCRIPTOR), &pfd);
+
+    ReleaseDC(hDC, hwnd);
     GetMessage(&msg, NULL, 0, 0);
     TranslateMessage(&msg);
     DispatchMessage(&msg);
@@ -133,11 +193,23 @@ HWND swapi_createwindow(){
 int runnedfunc = 0;
 
 void swapi_showwindow(){
+    HDC hDC;
+    HGLRC hRC;
+    if(isopenglwindow == TRUE){
+        hDC = GetDC(hwnd);
+        hRC = wglCreateContext(hDC);
+        wglMakeCurrent(hDC, hRC);
+    }
     ShowWindow(hwnd, nCmdShowcp);
     UpdateWindow(hwnd);
     while (GetMessage(&msg, NULL, 0, 0)) {
         TranslateMessage(&msg);
         DispatchMessage(&msg);
+    }
+    if(isopenglwindow == TRUE){
+        wglMakeCurrent(NULL, NULL);
+        ReleaseDC(hDC, hwnd);
+        wglDeleteContext(hRC);
     }
 }
 
